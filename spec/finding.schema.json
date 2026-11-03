@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/assuranceengine/finding.schema.json",
+  "title": "AssuranceEngine control assessment record (draft)",
+  "description": "One record per control per assessment. A conclusion requires evidence. Missing evidence must be recorded as insufficient_evidence with a reason, never as a guess.",
+  "type": "object",
+  "required": ["control_id", "objective", "frameworks", "state", "risk", "reasoning", "agent", "review"],
+  "properties": {
+    "control_id": { "type": "string" },
+    "domain": { "type": "string" },
+    "objective": { "type": "string" },
+    "frameworks": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "risk": { "enum": ["critical", "high", "medium", "low", "unrated"] },
+    "state": {
+      "enum": ["compliant", "non_compliant", "partially_compliant", "insufficient_evidence", "not_applicable", "pending_review"]
+    },
+    "evidence": {
+      "type": ["object", "null"],
+      "required": ["source", "collected_at", "method", "excerpt", "sha256"],
+      "properties": {
+        "source": { "type": "string" },
+        "collected_at": { "type": "string", "format": "date-time" },
+        "method": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "reasoning": { "type": "string" },
+    "abstention_reason": { "type": "string" },
+    "agent": {
+      "type": "object",
+      "required": ["name", "context", "model_version"],
+      "properties": {
+        "name": { "type": "string" },
+        "context": { "const": "stateless" },
+        "model_version": { "type": "string" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["state", "reviewer", "decided_at"],
+      "properties": {
+        "state": { "enum": ["pending", "approved", "rejected"] },
+        "reviewer": { "type": ["string", "null"] },
+        "decided_at": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "enum": ["compliant", "non_compliant", "partially_compliant"] } } },
+      "then": { "required": ["evidence"], "properties": { "evidence": { "type": "object" } } }
+    },
+    {
+      "if": { "properties": { "state": { "const": "insufficient_evidence" } } },
+      "then": { "required": ["abstention_reason"] }
+    }
+  ]
+}

@@ -1,0 +1,489 @@
+{
+  "as_of_default": "2026-11-02",
+  "note": "Synthetic sample data. No real environment was assessed.",
+  "controls": [
+    {
+      "control_id": "IAM-001",
+      "domain": "Identity",
+      "objective": "MFA is enforced on all administrator accounts",
+      "frameworks": [
+        "SOC 2 CC6.1",
+        "ISO 27001 A.8.2",
+        "NIST CSF 2.0 PR.AA"
+      ],
+      "risk": "low",
+      "state": "compliant",
+      "evidence": {
+        "source": "IAM credential report",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "admin_profiles_total=412\nmfa_active=412\nmfa_missing=0",
+        "sha256": "7cabe5c30449878f4a403f81253a7c4e9c779fa5ba7fad977a5aa25944f45078"
+      },
+      "reasoning": "All 412 administrator profiles have MFA active and none are missing it.",
+      "agent": {
+        "name": "identity-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "IAM-002",
+      "domain": "Identity",
+      "objective": "No wildcard permissions are attached to deployment roles",
+      "frameworks": [
+        "SOC 2 CC6.3",
+        "ISO 27001 A.8.2",
+        "NIST CSF 2.0 PR.AA"
+      ],
+      "risk": "critical",
+      "state": "non_compliant",
+      "evidence": {
+        "source": "IAM policy export",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "role=stg-deploy-role\npolicy=AdministratorAccess-Custom\nEffect=Allow\nAction=*\nResource=*",
+        "sha256": "20473e027edcef72194597b3232b305cd9981f1c8e46f0bec72ad96c06eda3ce"
+      },
+      "reasoning": "The staging deployment role allows every action on every resource, which breaks least privilege.",
+      "agent": {
+        "name": "identity-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "IAM-003",
+      "domain": "Identity",
+      "objective": "Inactive accounts are disabled within 90 days",
+      "frameworks": [
+        "SOC 2 CC6.2",
+        "NIST CSF 2.0 PR.AA"
+      ],
+      "risk": "medium",
+      "state": "compliant",
+      "evidence": {
+        "source": "IAM credential report",
+        "collected_at": "2026-09-23T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "accounts_inactive_over_90d=0",
+        "sha256": "9b5369298a33e7d51879a1b43204f561d4b5d69f09eba7f4d96d98ce17817fcd"
+      },
+      "reasoning": "No account in the report has been inactive for more than 90 days. This evidence is older than the 30 day freshness window, so it earns half credit until refreshed.",
+      "agent": {
+        "name": "identity-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "IAM-004",
+      "domain": "Identity",
+      "objective": "Privileged sessions require approval and are logged",
+      "frameworks": [
+        "SOC 2 CC6.1",
+        "ISO 27001 A.8.2"
+      ],
+      "risk": "high",
+      "state": "compliant",
+      "evidence": {
+        "source": "PAM session log",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "privileged_sessions=58\napproved=58\nlogged=58",
+        "sha256": "02a1096bc16ff6142410ad275f8be1668455fe7c71a974c6d02bc6b7473c7755"
+      },
+      "reasoning": "Every privileged session in the period was approved and logged.",
+      "agent": {
+        "name": "identity-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "IAM-005",
+      "domain": "Identity",
+      "objective": "Break-glass accounts are monitored and alert on use",
+      "frameworks": [
+        "SOC 2 CC7.2",
+        "NIST CSF 2.0 DE.CM"
+      ],
+      "risk": "critical",
+      "state": "compliant",
+      "evidence": {
+        "source": "SIEM alert rules",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "rule=breakglass-login\nenabled=true\nrouting=security-oncall",
+        "sha256": "fcfded6746110042c457eb4335753b3d941b4204fd1c5e280f360275cbb19a28"
+      },
+      "reasoning": "An enabled alert rule routes break-glass logins to the security on-call.",
+      "agent": {
+        "name": "identity-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "CLOUD-001",
+      "domain": "Cloud",
+      "objective": "Object storage blocks public access",
+      "frameworks": [
+        "SOC 2 CC6.6",
+        "NIST CSF 2.0 PR.IR"
+      ],
+      "risk": "high",
+      "state": "compliant",
+      "evidence": {
+        "source": "Cloud storage configuration",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "buckets_total=37\npublic_access_blocked=37",
+        "sha256": "7e653353097d15bfe06bc16c841cb1eacd3ad3792d6546b44357d52e532fd3f6"
+      },
+      "reasoning": "All 37 buckets block public access.",
+      "agent": {
+        "name": "cloud-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "CLOUD-002",
+      "domain": "Cloud",
+      "objective": "Audit logging is enabled in every region",
+      "frameworks": [
+        "SOC 2 CC7.2",
+        "NIST CSF 2.0 DE.CM"
+      ],
+      "risk": "medium",
+      "state": "partially_compliant",
+      "evidence": {
+        "source": "Cloud logging configuration",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "regions_in_use=6\nregions_logging=5\nregion_missing=eu-west-3",
+        "sha256": "b15d1395a3effae81d4ce4b53edc149b696fc08ffdd2149437ef78b82a4809bd"
+      },
+      "reasoning": "Logging is on in five of six regions in use. One region is not logged.",
+      "agent": {
+        "name": "cloud-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "CLOUD-003",
+      "domain": "Cloud",
+      "objective": "Network security groups deny unrestricted inbound access",
+      "frameworks": [
+        "SOC 2 CC6.6",
+        "ISO 27001 A.8.20"
+      ],
+      "risk": "high",
+      "state": "compliant",
+      "evidence": {
+        "source": "Cloud network configuration",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "security_groups=84\nopen_to_0.0.0.0/0_on_admin_ports=0",
+        "sha256": "8009330555cb4252584bbce960c3b61e115e0da4a88ffc6f7c0691d0fd3f8813"
+      },
+      "reasoning": "No security group exposes administrative ports to the internet.",
+      "agent": {
+        "name": "cloud-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "CLOUD-004",
+      "domain": "Cloud",
+      "objective": "Production workloads run in isolated network segments",
+      "frameworks": [
+        "SOC 2 CC6.6",
+        "NIST CSF 2.0 PR.IR"
+      ],
+      "risk": "critical",
+      "state": "compliant",
+      "evidence": {
+        "source": "Cloud network configuration",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "prod_vpcs=3\ncross_env_peering=0",
+        "sha256": "b4cb5be2f64a58b690609a6f646ad4f14c31bba9d03ee9b445b144baf1aa2b62"
+      },
+      "reasoning": "Production VPCs have no peering with other environments.",
+      "agent": {
+        "name": "cloud-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "AI-001",
+      "domain": "AI governance",
+      "objective": "The AI system inventory is current and complete",
+      "frameworks": [
+        "ISO 42001 inventory",
+        "NIST AI RMF GOVERN"
+      ],
+      "risk": "high",
+      "state": "compliant",
+      "evidence": {
+        "source": "Model registry export",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "models_registered=14\nmodels_in_production=9\nowner_missing=0",
+        "sha256": "5348d30c661ae9f7ca918b3ea3ffd5936878802a999c613f5135a9588ad8b9d7"
+      },
+      "reasoning": "Every registered model has a named owner.",
+      "agent": {
+        "name": "ai-governance-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "AI-002",
+      "domain": "AI governance",
+      "objective": "Production prompts and guardrails are version controlled",
+      "frameworks": [
+        "ISO 42001 lifecycle",
+        "NIST AI RMF MANAGE"
+      ],
+      "risk": "medium",
+      "state": "compliant",
+      "evidence": {
+        "source": "Prompt repository",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "prod_prompts=22\nunder_version_control=22",
+        "sha256": "c2dff4c71f8567aaad55fbd5d70e7289970298aca586c4e981b4e46c9c8c64f6"
+      },
+      "reasoning": "All 22 production prompts are under version control.",
+      "agent": {
+        "name": "ai-governance-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "AI-003",
+      "domain": "AI governance",
+      "objective": "High-risk AI use cases have a documented impact assessment",
+      "frameworks": [
+        "ISO 42001 impact assessment",
+        "NIST AI RMF MAP"
+      ],
+      "risk": "high",
+      "state": "compliant",
+      "evidence": {
+        "source": "AI governance register",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "high_risk_use_cases=4\nimpact_assessments=4",
+        "sha256": "9ac8938f1964557445ee097dfa13904c25849190fe621c527b9dd8fdec544d15"
+      },
+      "reasoning": "Each of the four high-risk use cases has an impact assessment on file.",
+      "agent": {
+        "name": "ai-governance-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "AI-004",
+      "domain": "AI governance",
+      "objective": "Each production model has a model card with intended use and evaluation metrics",
+      "frameworks": [
+        "ISO 42001 lifecycle",
+        "NIST AI RMF MEASURE"
+      ],
+      "risk": "medium",
+      "state": "partially_compliant",
+      "evidence": {
+        "source": "Model registry export",
+        "collected_at": "2026-11-02T09:15:00Z",
+        "method": "read-only API call",
+        "excerpt": "model=support-assistant-v3\nintended_use=present\nbias_testing=present\neval_metrics=MISSING",
+        "sha256": "c838f14e3773cb141617a8cc282a0b1532103af21cfac8852f02b1380e792458"
+      },
+      "reasoning": "Intended use and bias testing are documented. Evaluation metrics are missing.",
+      "agent": {
+        "name": "ai-governance-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "DATA-003",
+      "domain": "Data",
+      "objective": "Databases are encrypted at rest",
+      "frameworks": [
+        "ISO 27001 A.8.24",
+        "NIST CSF 2.0 PR.DS"
+      ],
+      "risk": "high",
+      "state": "compliant",
+      "evidence": {
+        "source": "Database configuration",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "databases=19\nencrypted_at_rest=19",
+        "sha256": "b5274e38185abae51f9d4e3e75e8bd9b14b3dba7eeb70343b0e28d4db5176ea6"
+      },
+      "reasoning": "All 19 databases are encrypted at rest.",
+      "agent": {
+        "name": "data-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "approved",
+        "reviewer": "J. Rivera (sample reviewer)",
+        "decided_at": "2026-11-02T14:30:00Z"
+      }
+    },
+    {
+      "control_id": "DATA-005",
+      "domain": "Data",
+      "objective": "Backups are restore-tested quarterly",
+      "frameworks": [
+        "ISO 27001 A.8.13",
+        "NIST CSF 2.0 PR.DS"
+      ],
+      "risk": "medium",
+      "state": "pending_review",
+      "evidence": {
+        "source": "Backup job history",
+        "collected_at": "2026-11-02T09:14:00Z",
+        "method": "read-only API call",
+        "excerpt": "restore_tests_last_90d=2\nrestore_tests_failed=0",
+        "sha256": "1fdc0fa1f2cba89749f8eae3f640878ba85fc2bb281de798629d0281a0ccd2a5"
+      },
+      "reasoning": "Two restore tests passed in the last 90 days. A reviewer must confirm the test scope.",
+      "agent": {
+        "name": "data-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "pending",
+        "reviewer": null,
+        "decided_at": null
+      }
+    },
+    {
+      "control_id": "DATA-008",
+      "domain": "Data",
+      "objective": "Encryption keys are rotated on the approved schedule",
+      "frameworks": [
+        "ISO 27001 A.8.24",
+        "NIST CSF 2.0 PR.DS"
+      ],
+      "risk": "unrated",
+      "state": "insufficient_evidence",
+      "evidence": null,
+      "reasoning": "No key rotation log was collected, so no conclusion is issued.",
+      "abstention_reason": "Connector scope excludes key management events.",
+      "agent": {
+        "name": "data-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "pending",
+        "reviewer": null,
+        "decided_at": null
+      }
+    },
+    {
+      "control_id": "PRIV-002",
+      "domain": "Privacy",
+      "objective": "Cross-border transfer assessments are on file",
+      "frameworks": [
+        "ISO 27001 A.5.34"
+      ],
+      "risk": "medium",
+      "state": "not_applicable",
+      "evidence": null,
+      "reasoning": "Out of scope: the environment holds no regulated personal data.",
+      "agent": {
+        "name": "privacy-agent",
+        "context": "stateless",
+        "model_version": "sample"
+      },
+      "review": {
+        "state": "pending",
+        "reviewer": null,
+        "decided_at": null
+      }
+    }
+  ]
+}

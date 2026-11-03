@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AssuranceEngine</title>
+<meta name="description" content="Prototype site for AssuranceEngine, an evidence-first AI control assurance concept. Sample data only.">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+body{margin:0;background:#101B2D}
+a{color:#55C9B1}a:hover{color:#8FE3D0}
+a:focus-visible,button:focus-visible{outline:2px solid #55C9B1;outline-offset:3px}
+button{font-family:inherit}
+</style>
+
+</head>
+<body>
+
+
+
+<div style="background: #101B2D; color: #E6EDF5; font-family: 'Manrope', system-ui, sans-serif; font-size: 17px; line-height: 1.6; width: 100%; overflow-x: hidden;">
+
+<!-- Prototype banner -->
+<div style="background: #D5A75C; color: #101B2D; padding: 10px 32px; font-size: 14px; font-weight: 600; text-align: center;">
+Prototype. Sample data is labeled illustrative. Pricing, framework coverage and performance claims are still to be confirmed.
+</div>
+
+<!-- Nav -->
+<header style="max-width: 1200px; margin: 0 auto; padding: 22px 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px;">
+<a href="#top" style="color: #E6EDF5; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: 0.04em;">ASSURANCE<span style="color: #55C9B1;">ENGINE</span><span style="font-size: 11px; vertical-align: super; color: #8DA0B8;">TM</span></a>
+<nav style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; font-size: 15px; font-weight: 500;">
+<a href="#brain" style="color: #A3B3C6; text-decoration: none;">AI brain</a>
+<a href="#trust" style="color: #A3B3C6; text-decoration: none;">Trust</a>
+<a href="#frameworks" style="color: #A3B3C6; text-decoration: none;">Frameworks</a>
+<a href="#platform" style="color: #A3B3C6; text-decoration: none;">Platform</a>
+<a href="#deployment" style="color: #A3B3C6; text-decoration: none;">Deployment</a>
+<a href="#demo" style="background: #55C9B1; color: #101B2D; text-decoration: none; font-weight: 700; padding: 11px 20px; border-radius: 6px;">Request a demo</a>
+</nav>
+</header>
+
+<!-- Hero -->
+<section id="top" style="background-image: linear-gradient(#16253A 1px, transparent 1px), linear-gradient(90deg, #16253A 1px, transparent 1px); background-size: 56px 56px; border-bottom: 1px solid #22344A;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 72px 32px 88px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 56px;">
+
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 28px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">AI trained in governance, risk and compliance</div>
+<h1 style="margin: 0; font-size: 62px; line-height: 1.04; font-weight: 800; letter-spacing: -0.025em; text-wrap: balance;">Don’t just trust your controls. <span style="color: #55C9B1;">Prove they work.</span></h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #A3B3C6; max-width: 540px;">AssuranceEngine reads your configurations, logs and access records the way an auditor would. It tests each control against the evidence, cites the exact line it relied on, and hands the conclusion to a human reviewer. All of it runs inside your private environment.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px;">
+<a href="#demo" style="background: #55C9B1; color: #101B2D; text-decoration: none; font-weight: 700; padding: 15px 26px; border-radius: 6px;">Request a technical demo</a>
+<a href="#brain" style="border: 1px solid #3A5069; color: #E6EDF5; text-decoration: none; font-weight: 600; padding: 14px 26px; border-radius: 6px;">See how the AI brain works</a>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 14px; color: #8DA0B8;">
+<span>Read-only connectors</span>
+<span>Evidence hashed with SHA-256</span>
+<span>Human sign-off on every conclusion</span>
+</div>
+</div>
+
+<!-- Interactive assessment -->
+<div style="flex: 1 1 520px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; overflow: hidden;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; padding: 14px 20px; border-bottom: 1px solid #2A3C52; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;">
+<span style="color: #55C9B1;">Goldfish assessment</span>
+<span style="color: #8DA0B8;">Illustrative sample data</span>
+</div>
+
+<div id="tabs" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px 0;">
+
+</div>
+
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8DA0B8; font-family: 'JetBrains Mono', ui-monospace, monospace;">Control objective</div>
+<div style="font-size: 18px; font-weight: 700; line-height: 1.35;"><span data-f="objective"></span></div>
+<div style="font-size: 13px; color: #8DA0B8;"><span data-f="maps"></span></div>
+</div>
+
+<div style="background: #0C1524; border: 1px solid #22344A; border-radius: 6px;">
+<div style="padding: 9px 14px; border-bottom: 1px solid #22344A; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #8DA0B8; overflow-wrap: anywhere;"><span data-f="source"></span></div>
+<pre style="margin: 0; padding: 14px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; line-height: 1.7; color: #CFE3F0; white-space: pre-wrap; overflow-wrap: anywhere;"><span data-f="evidence"></span></pre>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #8DA0B8; font-family: 'JetBrains Mono', ui-monospace, monospace;"><span data-f="agent"></span></div>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #D5DFEA;"><span data-f="reasoning"></span></p>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; padding-top: 16px; border-top: 1px solid #2A3C52;">
+<span style="font-weight: 700; font-size: 14px; padding: 6px 12px; border-radius: 4px; background: #101B2D; border: 1px solid var(--c); color: var(--c);"><span data-f="status"></span></span>
+<span style="font-size: 14px; color: #A3B3C6;">Risk <strong style="color: var(--rc);"><span data-f="risk"></span></strong></span>
+<div style="flex: 1 1 160px; min-width: 0; display: flex; flex-direction: column; gap: 5px;">
+<span style="font-size: 12px; color: #8DA0B8;">Evidence sufficiency: <span data-f="suff"></span></span>
+<div style="height: 6px; background: #101B2D; border-radius: 3px;"><div style="height: 6px; border-radius: 3px; background: var(--c); width: var(--bw);"></div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #8DA0B8;">
+<span style="overflow-wrap: anywhere;"><span data-f="hash"></span></span>
+<span><span data-f="reviewer"></span></span>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- AI brain -->
+<section id="brain" style="padding: 104px 0 96px;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 56px;">
+
+<div style="max-width: 760px; display: flex; flex-direction: column; gap: 18px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">The AI brain</div>
+<h2 style="margin: 0; font-size: 42px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">A fixed GRC knowledge base. A fresh assessor for every control.</h2>
+<p style="margin: 0; color: #A3B3C6;">We call it the Goldfish Model. The knowledge never changes under the assessor’s feet, and the assessor never carries bias from one control to the next.</p>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch;">
+
+<div style="flex: 1 1 260px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 14px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8DA0B8;">Stage 1 · The Elephant</div>
+<h3 style="margin: 0; font-size: 22px; line-height: 1.25;">Persistent GRC corpus</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">A centralized, immutable library of frameworks, control mappings and your internal policies. This is where the GRC training lives.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto;">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; border: 1px solid #3A5069; border-radius: 4px; padding: 4px 9px; color: #CFE3F0;">SOC 2 Type II</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; border: 1px solid #3A5069; border-radius: 4px; padding: 4px 9px; color: #CFE3F0;">ISO 42001</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; border: 1px solid #3A5069; border-radius: 4px; padding: 4px 9px; color: #CFE3F0;">NIST AI RMF</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; border: 1px solid #3A5069; border-radius: 4px; padding: 4px 9px; color: #CFE3F0;">NIST CSF 2.0</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; border: 1px solid #3A5069; border-radius: 4px; padding: 4px 9px; color: #CFE3F0;">COBIT</span>
+</div>
+</div>
+
+<div style="flex: 1 1 260px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 14px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8DA0B8;">Stage 2 · Evidence</div>
+<h3 style="margin: 0; font-size: 22px; line-height: 1.25;">Collected read-only, hashed on arrival</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Connectors pull configurations, logs, access records, policy documents and AI/ML artifacts from your cloud, identity and security stack. Each item keeps its source, collection time, method and SHA-256 hash.</p>
+</div>
+
+<div style="flex: 1 1 260px; min-width: 0; background: #1B2F47; border: 1px solid #55C9B1; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 14px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #55C9B1;">Stage 3 · The Goldfish</div>
+<h3 style="margin: 0; font-size: 22px; line-height: 1.25;">Stateless assessment agents</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Each agent judges one control against one evidence set, with no memory between tasks.</p>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #D5DFEA;">
+<div><strong>IAM</strong> <span style="color: #8DA0B8;">permission boundaries</span></div>
+<div><strong>Cloud</strong> <span style="color: #8DA0B8;">baseline postures</span></div>
+<div><strong>Infrastructure</strong> <span style="color: #8DA0B8;">segmentation, containers</span></div>
+<div><strong>AI governance</strong> <span style="color: #8DA0B8;">prompt and guardrail logic</span></div>
+<div><strong>Data</strong> <span style="color: #8DA0B8;">lineage and encryption</span></div>
+<div><strong>Compliance</strong> <span style="color: #8DA0B8;">framework cross-mapping</span></div>
+</div>
+</div>
+
+<div style="flex: 1 1 260px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 14px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8DA0B8;">Stage 4 · Decision and review</div>
+<h3 style="margin: 0; font-size: 22px; line-height: 1.25;">Six explicit states, then a person decides</h3>
+<div style="display: flex; flex-direction: column; gap: 7px; font-size: 14px;">
+<div style="display: flex; align-items: center; gap: 9px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #55C9B1;"></span>Compliant</div>
+<div style="display: flex; align-items: center; gap: 9px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #F2828A;"></span>Non-compliant</div>
+<div style="display: flex; align-items: center; gap: 9px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #D5A75C;"></span>Partially compliant</div>
+<div style="display: flex; align-items: center; gap: 9px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #B7C4D4;"></span>Insufficient evidence</div>
+<div style="display: flex; align-items: center; gap: 9px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #6E8199;"></span>Not applicable</div>
+<div style="display: flex; align-items: center; gap: 9px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #8DB4FF;"></span>Pending human review</div>
+</div>
+<p style="margin: 0; font-size: 14px; color: #A3B3C6;">Reviewers inspect the evidence, comment, approve or reject, and export the workpaper.</p>
+</div>
+
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 40px 56px; padding-top: 8px;">
+<div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Grounded in evidence</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">A finding must point to the log line or configuration it relied on. If the evidence is not there, there is no finding.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Willing to say it does not know</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Missing or stale evidence returns “Insufficient evidence”, never a confident guess.</p>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Built to be rerun</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Each assessment keeps the control definition, evidence snapshot, model version and output so an auditor can repeat it.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- Trust -->
+<section id="trust" style="background: #0C1524; border-top: 1px solid #22344A; border-bottom: 1px solid #22344A; padding: 96px 0;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px;">
+<div style="max-width: 720px; display: flex; flex-direction: column; gap: 18px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">Why auditors can rely on it</div>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">Inspect the proof, not just the conclusion</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<div style="flex: 1 1 340px; min-width: 0; border-top: 2px solid #55C9B1; padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+<h3 style="margin: 0; font-size: 20px;">Read-only by design</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Scoped connectors have no write access to your infrastructure.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; border-top: 2px solid #55C9B1; padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+<h3 style="margin: 0; font-size: 20px;">Provenance on every finding</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Source, collection time, method and SHA-256 integrity hash, linked to the exact log line and control objective.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; border-top: 2px solid #55C9B1; padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+<h3 style="margin: 0; font-size: 20px;">Isolated agents</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Stateless subagents prevent one assessment from contaminating the next.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; border-top: 2px solid #55C9B1; padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+<h3 style="margin: 0; font-size: 20px;">Humans hold the pen</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Reviewers control conclusions, exceptions and readiness sign-off. The platform supports readiness, testing and assurance. It does not certify or issue an audit opinion.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; border-top: 2px solid #55C9B1; padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+<h3 style="margin: 0; font-size: 20px;">Your data stays yours</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">No training on customer data. Core evaluation needs no outbound internet access.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; border-top: 2px solid #55C9B1; padding-top: 18px; display: flex; flex-direction: column; gap: 8px;">
+<h3 style="margin: 0; font-size: 20px;">One score that cannot hide gaps</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">The Enterprise Assurance Index summarizes posture, and never buries missing evidence or critical exceptions.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Frameworks -->
+<section id="frameworks" style="padding: 96px 0;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">Frameworks</div>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">One engine across every framework you answer to</h2>
+<p style="margin: 0; color: #A3B3C6;">Technical evidence is tested once and mapped across frameworks, so a single finding can serve several audits.</p>
+<p style="margin: 0; font-size: 13px; color: #8DA0B8;">Supported versions and coverage depth to be confirmed.</p>
+</div>
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-wrap: wrap; gap: 12px;">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">SOC 2</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">ISO 27001</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #55C9B1; border-radius: 6px; padding: 16px 22px; color: #55C9B1;">ISO 42001</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #55C9B1; border-radius: 6px; padding: 16px 22px; color: #55C9B1;">NIST AI RMF</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">NIST CSF 2.0</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">DORA</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">HIPAA</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">PCI DSS</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #18283A; border: 1px solid #2A3C52; border-radius: 6px; padding: 16px 22px;">COBIT</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; background: #101B2D; border: 1px dashed #3A5069; border-radius: 6px; padding: 16px 22px; color: #A3B3C6;">Your custom framework</span>
+</div>
+</div>
+</section>
+
+<!-- Platform modules -->
+<section id="platform" style="background: #0C1524; border-top: 1px solid #22344A; border-bottom: 1px solid #22344A; padding: 96px 0;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px;">
+<div style="max-width: 720px; display: flex; flex-direction: column; gap: 18px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">Platform</div>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">One engine, six modules</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+<div style="flex: 1 1 340px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Infrastructure Assurance</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Validates cloud postures, network segmentation, container policies and identity perimeters.</p>
+<div style="margin-top: auto; padding-top: 8px; font-size: 13px; color: #8DA0B8;">For CISOs, cloud security, infrastructure</div>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0; background: #1B2F47; border: 1px solid #55C9B1; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">AI Governance Assurance</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Evaluates model registry data, prompt filters, training lineage and autonomous agent sandboxes.</p>
+<div style="margin-top: auto; padding-top: 8px; font-size: 13px; color: #8DA0B8;">For AI governance and risk teams</div>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Framework Assurance</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Cross-maps SOC 2, ISO 27001, ISO 42001, NIST AI RMF, NIST CSF and COBIT.</p>
+<div style="margin-top: auto; padding-top: 8px; font-size: 13px; color: #8DA0B8;">For GRC, internal audit, compliance</div>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Continuous Risk Intelligence</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Tracks drift trends, severity escalations and cross-system control dependencies over time.</p>
+<div style="margin-top: auto; padding-top: 8px; font-size: 13px; color: #8DA0B8;">For CISOs, CROs, enterprise risk</div>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Audit Workpapers and Evidence</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Produces defensible, auditor-ready workpaper binders with hash-linked artifact chains.</p>
+<div style="margin-top: auto; padding-top: 8px; font-size: 13px; color: #8DA0B8;">For internal and external audit</div>
+</div>
+
+<div style="flex: 1 1 340px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 10px;">
+<h3 style="margin: 0; font-size: 20px;">Executive Assurance Intelligence</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Translates low-level telemetry into posture summaries for board and committee review.</p>
+<div style="margin-top: auto; padding-top: 8px; font-size: 13px; color: #8DA0B8;">For executives and board risk committees</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Deployment -->
+<section id="deployment" style="padding: 96px 0;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start;">
+
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">Private deployment</div>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">Your infrastructure. Your data. Your perimeter.</h2>
+<p style="margin: 0; color: #A3B3C6;">The models, vector database and evaluation code run inside your private VPC or on-premise perimeter. Connectors are read-only, and core evaluation needs no outbound internet access.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+<span style="font-size: 14px; border: 1px solid #3A5069; border-radius: 4px; padding: 7px 13px;">AWS private VPC</span>
+<span style="font-size: 14px; border: 1px solid #3A5069; border-radius: 4px; padding: 7px 13px;">Azure private VNet</span>
+<span style="font-size: 14px; border: 1px solid #3A5069; border-radius: 4px; padding: 7px 13px;">Google Cloud private VPC</span>
+<span style="font-size: 14px; border: 1px solid #3A5069; border-radius: 4px; padding: 7px 13px;">On-premise</span>
+<span style="font-size: 14px; border: 1px solid #3A5069; border-radius: 4px; padding: 7px 13px;">Air-gapped</span>
+</div>
+<p style="margin: 0; font-size: 13px; color: #8DA0B8;">Private VPC and physically air-gapped installs are different. Confirm which are supported before publishing.</p>
+</div>
+
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+<div style="background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 16px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #55C9B1;">Live in five days, inside your environment</div>
+<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 9px; font-size: 15px; color: #D5DFEA;">
+<li>Provision a Linux GPU host and verify it with nvidia-smi.</li>
+<li>Configure scoped read-only IAM connectors for cloud and telemetry endpoints.</li>
+<li>Deploy the containerized stack and local vector database with Docker Compose.</li>
+<li>Ingest corporate policies, frameworks and scope definitions.</li>
+<li>Run the baseline automated audit and export traceable workpapers.</li>
+</ol>
+</div>
+<div style="background: #0C1524; border: 1px solid #22344A; border-radius: 10px; padding: 22px 26px; display: flex; flex-wrap: wrap; gap: 14px 36px; font-size: 14px;">
+<div style="width: 100%; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8DA0B8;">Proposed hardware profile</div>
+<div><span style="color: #8DA0B8;">GPU</span><br><strong>1x NVIDIA, 16 GB VRAM</strong></div>
+<div><span style="color: #8DA0B8;">Compute</span><br><strong>8 vCPUs</strong></div>
+<div><span style="color: #8DA0B8;">Memory</span><br><strong>32 GB RAM</strong></div>
+<div><span style="color: #8DA0B8;">Storage</span><br><strong>100 GB NVMe</strong></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- Engagement -->
+<section id="engagement" style="background: #0C1524; border-top: 1px solid #22344A; border-bottom: 1px solid #22344A; padding: 96px 0;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 48px;">
+<div style="max-width: 720px; display: flex; flex-direction: column; gap: 18px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #55C9B1;">Engagement</div>
+<h2 style="margin: 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">Start with a baseline, grow into continuous assurance</h2>
+<p style="margin: 0; font-size: 14px; color: #8DA0B8;">Pricing to be confirmed.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+
+<div style="flex: 1 1 320px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8DA0B8;">Readiness audit</div>
+<h3 style="margin: 0; font-size: 26px;">Baseline</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">A single point-in-time evaluation of your verified posture ahead of formal audits: technical evidence collection, an initial control gap and risk register, an executive report, and an audit-ready workpaper export.</p>
+</div>
+
+<div style="flex: 1 1 320px; min-width: 0; background: #1B2F47; border: 1px solid #55C9B1; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #55C9B1;">Flagship</div>
+<h3 style="margin: 0; font-size: 26px;">Enterprise</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Continuous internal assurance in your private VPC: scheduled assessments, workflow automation, multi-framework cross-mapping, a risk dashboard, human review and sign-off, plus a deployment SLA and dedicated support.</p>
+</div>
+
+<div style="flex: 1 1 320px; min-width: 0; background: #18283A; border: 1px solid #2A3C52; border-radius: 10px; padding: 28px; display: flex; flex-direction: column; gap: 12px;">
+<div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #8DA0B8;">Practice licensing</div>
+<h3 style="margin: 0; font-size: 26px;">Partner</h3>
+<p style="margin: 0; font-size: 15px; color: #A3B3C6;">Engine licensing for audit firms, consultancies and managed security providers: multi-tenant assessments, white-labeled workpapers, custom control rule authoring, and practice enablement and training.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section id="demo" style="padding: 104px 0; background-image: linear-gradient(#16253A 1px, transparent 1px), linear-gradient(90deg, #16253A 1px, transparent 1px); background-size: 56px 56px;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between;">
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+<h2 style="margin: 0; font-size: 46px; line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">Your next audit should begin with evidence, not spreadsheets.</h2>
+<p style="margin: 0; color: #A3B3C6; max-width: 600px;">See the Goldfish agents evaluate live controls and inspect the evidence workpapers in real time.</p>
+</div>
+<div style="flex: 0 1 auto; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+<a href="#demo" style="background: #55C9B1; color: #101B2D; text-decoration: none; font-weight: 700; padding: 16px 28px; border-radius: 6px;">Request a technical demo</a>
+<a href="#deployment" style="border: 1px solid #3A5069; color: #E6EDF5; text-decoration: none; font-weight: 600; padding: 15px 28px; border-radius: 6px;">Read the private deployment guide</a>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer style="border-top: 1px solid #22344A; padding: 36px 0 44px;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 32px; font-size: 13px; color: #8DA0B8;">
+<span style="font-weight: 800; color: #E6EDF5; letter-spacing: 0.04em;">ASSURANCE<span style="color: #55C9B1;">ENGINE</span>TM</span>
+<span style="flex: 1 1 420px; min-width: 0; max-width: 640px;">AssuranceEngine supports readiness, testing and assurance. It is not a certification and does not issue an audit opinion.</span>
+</div>
+</footer>
+
+</div>
+
+<script>
+const C = [
+      {
+        id: "IAM-001", status: "Compliant", color: "#55C9B1", risk: "Low", riskColor: "#55C9B1",
+        objective: "Multi-factor authentication is enforced on all administrator accounts",
+        maps: "SOC 2 CC6.1 · ISO 27001 privileged access · NIST CSF 2.0 PR.AA",
+        source: "Source: IAM credential report · collected 2026-11-02 09:14 UTC · read-only API",
+        evidence: "admin_profiles_total   412\nmfa_active             412\nmfa_missing            0\nlast_credential_report 2026-11-02T09:13:51Z",
+        agent: "IAM agent · fresh context · 1 control, 1 evidence set",
+        reasoning: "All 412 administrator profiles in the report have MFA active and none are missing it. The report is current, so the control objective is met for this population.",
+        suff: "complete", barW: "100%",
+        hash: "sha256 4be1…c90a07 · sample", reviewer: "Reviewer: pending sign-off"
+      },
+      {
+        id: "IAM-002", status: "Non-compliant", color: "#F2828A", risk: "Critical", riskColor: "#F2828A",
+        objective: "No wildcard permissions are attached to deployment roles",
+        maps: "SOC 2 CC6.3 · ISO 27001 privileged access · NIST CSF 2.0 PR.AA",
+        source: "Source: IAM policy export · collected 2026-11-02 09:14 UTC · read-only API",
+        evidence: "role      stg-deploy-role\npolicy    AdministratorAccess-Custom\n  Effect    Allow\n  Action    \"*\"\n  Resource  \"*\"",
+        agent: "IAM agent · fresh context · 1 control, 1 evidence set",
+        reasoning: "The staging deployment role carries a policy that allows every action on every resource. That breaks the least-privilege objective. The evidence is complete and current, so this is a finding, not a gap in data.",
+        suff: "complete", barW: "100%",
+        hash: "sha256 9f2c…e03a1d · sample", reviewer: "Reviewer: pending review"
+      },
+      {
+        id: "AI-004", status: "Partial", color: "#D5A75C", risk: "Medium", riskColor: "#D5A75C",
+        objective: "Each production model has a model card with intended use and evaluation metrics",
+        maps: "ISO 42001 AI system lifecycle · NIST AI RMF MEASURE",
+        source: "Source: model registry export · collected 2026-11-02 09:15 UTC · read-only API",
+        evidence: "model          support-assistant-v3\nintended_use   present\nbias_testing   present\neval_metrics   MISSING",
+        agent: "AI governance agent · fresh context · 1 control, 1 evidence set",
+        reasoning: "The model card documents intended use and bias testing but has no evaluation metrics. Two of three required elements are present, so the control is partially met.",
+        suff: "partial, 1 element missing", barW: "62%",
+        hash: "sha256 1d77…5ab3f8 · sample", reviewer: "Reviewer: pending review"
+      },
+      {
+        id: "DATA-008", status: "Insufficient evidence", color: "#B7C4D4", risk: "Unrated", riskColor: "#B7C4D4",
+        objective: "Encryption keys are rotated on the approved schedule",
+        maps: "ISO 27001 cryptography · NIST CSF 2.0 PR.DS",
+        source: "Source: KMS key rotation log · not collected",
+        evidence: "kms.key_rotation_log\n  status   NOT COLLECTED\n  reason   connector scope excludes key events",
+        agent: "Data agent · fresh context · 1 control, 0 evidence sets",
+        reasoning: "There is no rotation log to test, so no conclusion is issued. The agent will not guess. It lists the missing evidence and queues the control for a reviewer once the connector scope is widened.",
+        suff: "none", barW: "4%",
+        hash: "no evidence hash · nothing collected", reviewer: "Reviewer: action needed"
+      }
+    ];
+const tabsEl = document.getElementById("tabs");
+let sel = 1;
+function render() {
+  const cur = C[sel];
+  const root = document.documentElement.style;
+  root.setProperty("--c", cur.color);
+  root.setProperty("--rc", cur.riskColor);
+  root.setProperty("--bw", cur.barW);
+  document.querySelectorAll("[data-f]").forEach(function (el) { el.textContent = cur[el.dataset.f]; });
+  tabsEl.textContent = "";
+  C.forEach(function (c, i) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-pressed", i === sel ? "true" : "false");
+    b.style.cssText = "flex: 1 1 100px; min-width: 0; cursor: pointer; text-align: left; color: #E6EDF5; border-radius: 6px; padding: 10px 12px; background: " + (i === sel ? "#243D5A" : "#18283A") + "; border: 1px solid " + (i === sel ? "#55C9B1" : "#2A3C52") + ";";
+    const id = document.createElement("span");
+    id.style.cssText = "display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 600;";
+    id.textContent = c.id;
+    const st = document.createElement("span");
+    st.style.cssText = "display: flex; align-items: center; gap: 7px; font-size: 12px; color: #A3B3C6; margin-top: 3px;";
+    const dot = document.createElement("span");
+    dot.style.cssText = "width: 8px; height: 8px; border-radius: 50%; background: " + c.color + ";";
+    st.appendChild(dot);
+    st.appendChild(document.createTextNode(c.status));
+    b.appendChild(id);
+    b.appendChild(st);
+    b.addEventListener("click", function () { sel = i; render(); });
+    tabsEl.appendChild(b);
+  });
+}
+render();
+</script>
+</body>
+</html>
