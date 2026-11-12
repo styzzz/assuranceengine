@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How an InfoSec Navigator control becomes a result: component, objective, read-only evidence, one of six states, and human review.">
+<meta name="theme-color" content="#0d1a26">
+<title>How a Control Becomes a Result | InfoSec Navigator</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="theme.css">
+<style>
+.hero{padding:76px 0 40px;text-align:center}
+h1{max-width:900px;margin:18px auto;font-size:clamp(36px,5.6vw,60px);line-height:1.06}
+.hero .lede{margin:0 auto}
+.diagram{margin:26px auto 0;padding:24px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#14263aee,#0f2033f2);box-shadow:0 24px 80px #0004}
+.diagram-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;text-align:left}
+.diagram-head strong{font-size:14px}
+.flow{display:grid;grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr) 46px minmax(0,1fr) 46px minmax(0,1fr) 46px minmax(0,1fr);align-items:stretch}
+.node{min-height:200px;padding:16px 14px;border:1px solid var(--line);border-radius:13px;background:#0b1826;display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+.node.component{border-top:3px solid var(--amber)}
+.node.objective{border-top:3px solid var(--sky)}
+.node.evidence{border-top:3px solid var(--cyan)}
+.node.state{border-top:3px solid var(--lilac)}
+.node.review{border-top:3px solid var(--red)}
+.node .label{margin-bottom:7px;color:var(--muted);font-size:9px}
+.node h2{margin:0 0 7px;font-size:16px;line-height:1.25}
+.node p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.arrow{display:flex;align-items:center;justify-content:center;color:var(--cyan)}
+.arrow svg{width:30px;height:22px}
+.caption{margin:16px 0 0;color:var(--muted);font-size:12px}
+.section{padding:62px 0}
+.example{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px}
+.card{padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.card h3{margin:8px 0 12px;font-size:20px}
+.card p{color:var(--muted);margin-bottom:0}
+pre{margin:14px 0 0;padding:14px;border-radius:10px;background:#0a1520;border:1px solid #ffffff12;color:#d3e2ea;font:12px/1.6 "IBM Plex Mono",monospace;overflow-x:auto;white-space:pre}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px;margin-top:14px}
+.kv span{word-break:break-all}
+.kv b{font:500 11px "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.states{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.state-card{padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.state-card code{font:600 12px "IBM Plex Mono",monospace;color:var(--lilac)}
+.state-card p{margin:8px 0 0;color:var(--muted);font-size:13px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:900px){.flow{grid-template-columns:minmax(0,1fr);gap:8px}.flow .node{min-height:0}.flow .arrow{height:22px;transform:rotate(90deg)}.example,.rules{grid-template-columns:minmax(0,1fr)}.states{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.hero{padding-top:50px}.diagram{padding:14px}.states{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="../index.html">ASSURANCE<span>ENGINE</span></a>
+    <span class="module">InfoSec Navigator</span>
+    <a class="nav-link" href="overview.html">Back to the overview &rarr;</a>
+  </nav>
+</div>
+
+<main>
+  <header class="wrap hero">
+    <div class="eyebrow">From a security objective to a reviewed result</div>
+    <h1>One objective. <em>One piece of evidence.</em> One state a person can check.</h1>
+    <p class="lede">Every result in the InfoSec Navigator follows the same path. Read it left to right to see what the assessor is allowed to say, and where a person must approve it.</p>
+  </header>
+
+  <section class="wrap">
+    <div class="diagram">
+      <div class="diagram-head">
+        <strong>The control-to-result flow</strong>
+        <span class="badge">Synthetic example</span>
+      </div>
+      <div class="flow" role="img" aria-label="An architecture component holds a control objective. The objective is tested with read-only evidence. The assessor records one of six states. A person reviews and approves the state.">
+        <article class="node component">
+          <div class="label">01 · Component</div>
+          <h2>Cloud Security</h2>
+          <p>One of seven operating components that group the controls.</p>
+          <div class="chips"><span class="chip">cloud</span></div>
+        </article>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 30 22" fill="none"><path d="M2 11h24m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <article class="node objective">
+          <div class="label">02 · Objective</div>
+          <h2>ISN-ACC-02</h2>
+          <p>No production or deployment role grants every action or every resource.</p>
+          <div class="chips"><span class="chip">ISO 5.15</span><span class="chip">CC6.3</span></div>
+        </article>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 30 22" fill="none"><path d="M2 11h24m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <article class="node evidence">
+          <div class="label">03 · Evidence</div>
+          <h2>Read-only excerpt</h2>
+          <p>Policy text is exported without write access, then hashed with SHA-256 before anyone scores it.</p>
+          <div class="chips"><span class="chip">read-only</span><span class="chip">sha256</span></div>
+        </article>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 30 22" fill="none"><path d="M2 11h24m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <article class="node state">
+          <div class="label">04 · Assessor state</div>
+          <h2>One of six</h2>
+          <p>The assessor may conclude only when the evidence supports it. Otherwise it abstains and gives the reason.</p>
+          <div class="chips"><span class="chip">non_compliant</span></div>
+        </article>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 30 22" fill="none"><path d="M2 11h24m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <article class="node review">
+          <div class="label">05 · Human review</div>
+          <h2>A person decides</h2>
+          <p>Until a reviewer approves the state, it stays pending review and carries no credit.</p>
+          <div class="chips"><span class="chip">pending_review</span></div>
+        </article>
+      </div>
+      <p class="caption">The navigator defines the question and the evidence. It does not make the final decision on its own.</p>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="example-title">
+    <div class="section-title">
+      <div class="eyebrow">A worked example</div>
+      <h2 class="heading" id="example-title">A critical finding, traced from evidence to state</h2>
+      <p>The excerpt below is the repository's synthetic sample. It shows the broad grant the control is designed to catch.</p>
+    </div>
+    <div class="example">
+      <article class="card">
+        <span class="badge">Synthetic excerpt</span>
+        <h3>Evidence for ISN-ACC-02</h3>
+        <p>The test lists production and deployment roles, then flags any statement that allows every action on every resource.</p>
+        <pre>role=stg-deploy-role
+policy=AdministratorAccess-Custom
+Effect=Allow
+Action=*
+Resource=*</pre>
+        <div class="kv">
+          <b>Hash</b><span>20473e027edcef72194597b3232b305cd9981f1c8e46f0bec72ad96c06eda3ce</span>
+          <b>Method</b><span>Read-only policy export, recorded before scoring</span>
+        </div>
+      </article>
+      <article class="card">
+        <span class="badge">Result</span>
+        <h3>non_compliant, then a review</h3>
+        <p>The staging deploy role allows all actions on all resources. The evidence is complete and current, so this is a finding rather than a data gap.</p>
+        <div class="kv">
+          <b>Risk</b><span>Critical, by the control's default rating</span>
+          <b>State</b><span>non_compliant, pending_review until a person approves</span>
+          <b>Index</b><span>In the draft index methodology, one critical non-compliance caps the reported score at 69</span>
+          <b>If the evidence were missing</b><span>insufficient_evidence, with the reason written in the record</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="states-title">
+    <div class="section-title">
+      <div class="eyebrow">The six states</div>
+      <h2 class="heading" id="states-title">Every result is one of these</h2>
+      <p>The states come from the AssuranceEngine schema, so the navigator and the assessment records use the same vocabulary.</p>
+    </div>
+    <div class="states" id="states"></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="rules-title">
+    <div class="section-title">
+      <div class="eyebrow">Rules that hold</div>
+      <h2 class="heading" id="rules-title">What the navigator will not do</h2>
+    </div>
+    <div class="rules">
+      <div class="panel"><h3>Guess when evidence is missing</h3><p>A missing source means insufficient evidence with a reason. It never becomes a pass.</p></div>
+      <div class="panel"><h3>Write to the systems it reviews</h3><p>Every evidence source is read-only. The validator rejects any source that is not.</p></div>
+      <div class="panel"><h3>Conclude without a person</h3><p>Every result waits for human review. Pending results earn no credit in the index.</p></div>
+      <div class="panel"><h3>Claim more than it does</h3><p>Companions, the knowledge layer and the platform connector are labelled specified only until they are built.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>Design draft. Synthetic example. Not an audit opinion.</span>
+    <span>States from <code>spec/finding.schema.json</code>.</span>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.INFOSEC_NAVIGATOR;
+  if (!D) return;
+  var box = document.getElementById("states");
+  Object.keys(D.engine_states).forEach(function (key) {
+    var card = document.createElement("div");
+    card.className = "state-card";
+    var code = document.createElement("code");
+    code.textContent = key;
+    var p = document.createElement("p");
+    p.textContent = D.engine_states[key];
+    card.appendChild(code);
+    card.appendChild(p);
+    box.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>
