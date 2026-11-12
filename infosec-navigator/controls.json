@@ -1,0 +1,1569 @@
+{
+  "schema_version": "0.2",
+  "status": "Design draft. Framework references were written from the published frameworks and must be checked against licensed texts before use. Companions and platform layers are specified, not built.",
+  "frameworks": {
+    "iso27001_2022": {
+      "name": "ISO/IEC 27001:2022 Annex A (subset used here)",
+      "ids": {
+        "5.1": "Policies for information security",
+        "5.2": "Information security roles and responsibilities",
+        "5.3": "Segregation of duties",
+        "5.9": "Inventory of information and other associated assets",
+        "5.12": "Classification of information",
+        "5.15": "Access control",
+        "5.17": "Authentication information",
+        "5.18": "Access rights",
+        "5.19": "Information security in supplier relationships",
+        "5.20": "Addressing information security within supplier agreements",
+        "5.22": "Monitoring, review and change management of supplier services",
+        "5.23": "Information security for use of cloud services",
+        "5.24": "Information security incident management planning and preparation",
+        "5.25": "Assessment and decision on information security events",
+        "5.26": "Response to information security incidents",
+        "5.29": "Information security during disruption",
+        "5.30": "ICT readiness for business continuity",
+        "5.36": "Compliance with policies, rules and standards for information security",
+        "6.3": "Information security awareness, education and training",
+        "8.2": "Privileged access rights",
+        "8.5": "Secure authentication",
+        "8.8": "Management of technical vulnerabilities",
+        "8.9": "Configuration management",
+        "8.12": "Data leakage prevention",
+        "8.13": "Information backup",
+        "8.15": "Logging",
+        "8.16": "Monitoring activities",
+        "8.20": "Networks security",
+        "8.22": "Segregation of networks",
+        "8.24": "Use of cryptography",
+        "8.25": "Secure development life cycle",
+        "8.28": "Secure coding",
+        "8.29": "Security testing in development and acceptance",
+        "8.32": "Change management"
+      }
+    },
+    "nist_csf_2_0": {
+      "name": "NIST Cybersecurity Framework 2.0 (categories)",
+      "ids": {
+        "GV.OC": "Organizational Context",
+        "GV.RM": "Risk Management Strategy",
+        "GV.RR": "Roles, Responsibilities, and Authorities",
+        "GV.PO": "Policy",
+        "GV.OV": "Oversight",
+        "GV.SC": "Cybersecurity Supply Chain Risk Management",
+        "ID.AM": "Asset Management",
+        "ID.RA": "Risk Assessment",
+        "ID.IM": "Improvement",
+        "PR.AA": "Identity Management, Authentication, and Access Control",
+        "PR.AT": "Awareness and Training",
+        "PR.DS": "Data Security",
+        "PR.PS": "Platform Security",
+        "PR.IR": "Technology Infrastructure Resilience",
+        "DE.CM": "Continuous Monitoring",
+        "DE.AE": "Adverse Event Analysis",
+        "RS.MA": "Incident Management",
+        "RS.AN": "Incident Analysis",
+        "RS.CO": "Incident Response Reporting and Communication",
+        "RS.MI": "Incident Mitigation",
+        "RC.RP": "Incident Recovery Plan Execution",
+        "RC.CO": "Incident Recovery Communication"
+      }
+    },
+    "soc2_tsc": {
+      "name": "AICPA SOC 2 Trust Services Criteria (criteria used here)",
+      "ids": {
+        "CC1.3": "Structure, authority and responsibility",
+        "CC1.4": "Commitment to competence",
+        "CC2.2": "Internal communication of control information",
+        "CC3.2": "Risk identification and assessment",
+        "CC5.3": "Policies and procedures that deploy controls",
+        "CC6.1": "Logical access security",
+        "CC6.2": "Registration and authorization of users",
+        "CC6.3": "Role-based access and least privilege",
+        "CC6.6": "Boundary protection",
+        "CC6.7": "Restriction of data transmission and movement",
+        "CC7.1": "Detection of vulnerabilities and configuration changes",
+        "CC7.2": "Monitoring for anomalies",
+        "CC7.3": "Evaluation of security events",
+        "CC7.4": "Incident response",
+        "CC8.1": "Change management",
+        "CC9.2": "Vendor and business partner risk",
+        "A1.2": "Backup and recovery infrastructure",
+        "A1.3": "Recovery plan testing"
+      }
+    }
+  },
+  "domains": {
+    "gov": {
+      "name": "Governance and policy",
+      "code": "GOV"
+    },
+    "risk": {
+      "name": "Risk management",
+      "code": "RSK"
+    },
+    "asset": {
+      "name": "Asset management",
+      "code": "AST"
+    },
+    "access": {
+      "name": "Identity and access",
+      "code": "ACC"
+    },
+    "tech": {
+      "name": "Technical controls",
+      "code": "TEC"
+    },
+    "resilience": {
+      "name": "Backup and continuity",
+      "code": "RES"
+    },
+    "detect": {
+      "name": "Logging and detection",
+      "code": "DET"
+    },
+    "data": {
+      "name": "Data protection",
+      "code": "DAT"
+    },
+    "supplier": {
+      "name": "Suppliers and cloud",
+      "code": "SUP"
+    },
+    "people": {
+      "name": "People and awareness",
+      "code": "PPL"
+    },
+    "dev": {
+      "name": "Change and secure development",
+      "code": "DEV"
+    }
+  },
+  "engine_states": {
+    "compliant": "The evidence supports the objective.",
+    "partially_compliant": "The evidence supports part of the objective.",
+    "non_compliant": "The evidence shows the objective is not met.",
+    "insufficient_evidence": "The assessor cannot conclude. The reason is recorded.",
+    "not_applicable": "The control does not apply to the organization or the scope.",
+    "pending_review": "A conclusion exists but a person has not approved it yet."
+  },
+  "controls": [
+    {
+      "id": "ISN-GOV-01",
+      "domain": "gov",
+      "component": "compliance",
+      "title": "Approved information security policy",
+      "objective": "An approved information security policy is in force, is reviewed at least every 12 months and is acknowledged by staff.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.1",
+          "5.36"
+        ],
+        "nist_csf_2_0": [
+          "GV.PO"
+        ],
+        "soc2_tsc": [
+          "CC5.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Policy register with version, approver and approval date",
+          "method": "Document review",
+          "access": "read-only"
+        },
+        {
+          "source": "Policy acknowledgement report from the learning or HR system",
+          "method": "Export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm the current policy shows a version, an approver and an approval date.",
+        "Confirm the approval date falls within the last 12 months.",
+        "Sample 10 staff and confirm each acknowledged the current version."
+      ],
+      "pass_criteria": "A current, approved policy is in force and staff in the sample acknowledged it.",
+      "common_gaps": [
+        "Policy approved by its own author with no independent approver",
+        "Acknowledgements tracked only for new joiners"
+      ],
+      "abstain_when": [
+        "The policy register cannot be produced",
+        "Acknowledgement data does not cover the sampling period"
+      ]
+    },
+    {
+      "id": "ISN-GOV-02",
+      "domain": "gov",
+      "component": "executive_governance",
+      "title": "Security responsibilities are assigned",
+      "objective": "Each security domain has a named owner, and conflicting duties are separated.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.2",
+          "5.3"
+        ],
+        "nist_csf_2_0": [
+          "GV.RR"
+        ],
+        "soc2_tsc": [
+          "CC1.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Role assignments (RACI table or organization chart)",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm a named owner exists for each security domain in the policy.",
+        "Confirm the same person does not both request and approve production access or changes.",
+        "Confirm each named owner is a current employee or contractor."
+      ],
+      "pass_criteria": "Every domain has a current owner and no conflicting duty is held by one person.",
+      "common_gaps": [
+        "Owner listed on paper but no longer with the organization",
+        "The same person requests and approves production changes"
+      ],
+      "abstain_when": [
+        "No role record exists",
+        "The role record is older than the reporting period"
+      ]
+    },
+    {
+      "id": "ISN-RSK-01",
+      "domain": "risk",
+      "component": "risk",
+      "title": "Security risks are assessed and treated",
+      "objective": "Security risks are recorded with an owner, a rating and a treatment decision, and the register is reviewed every 12 months.",
+      "default_risk": "high",
+      "frameworks": {
+        "nist_csf_2_0": [
+          "ID.RA"
+        ],
+        "soc2_tsc": [
+          "CC3.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Risk register with owners, ratings and treatment decisions",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm each risk has an owner, a likelihood and impact rating.",
+        "Confirm each risk rated high or above has a treatment decision (accept, reduce, transfer or avoid) with a date.",
+        "Confirm the register was reviewed within the last 12 months."
+      ],
+      "pass_criteria": "Every risk is owned, rated and treated, and the register is current.",
+      "common_gaps": [
+        "Risks listed without an owner or treatment",
+        "Register not updated after a major system change"
+      ],
+      "abstain_when": [
+        "No register can be produced",
+        "No record of any review in the period"
+      ]
+    },
+    {
+      "id": "ISN-AST-01",
+      "domain": "asset",
+      "component": "risk",
+      "title": "Asset inventory is complete and current",
+      "objective": "Every production system, cloud account and data store is in the asset inventory with an owner.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.9"
+        ],
+        "nist_csf_2_0": [
+          "ID.AM"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Asset inventory export with owner and last-updated date",
+          "method": "Export",
+          "access": "read-only"
+        },
+        {
+          "source": "Cloud resource listing for in-scope accounts",
+          "method": "Read-only API listing",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Compare the cloud resource listing with the inventory and count resources that are missing.",
+        "Confirm each inventory record has a named owner.",
+        "Confirm the inventory was updated within the last 30 days."
+      ],
+      "pass_criteria": "Every in-scope production resource appears in the inventory with an owner.",
+      "common_gaps": [
+        "Cloud accounts outside the inventory",
+        "Inventory refreshed manually once a year"
+      ],
+      "abstain_when": [
+        "The cloud listing cannot be read with the granted access",
+        "The inventory export has no timestamp"
+      ]
+    },
+    {
+      "id": "ISN-AST-02",
+      "domain": "asset",
+      "component": "risk",
+      "title": "Information is classified and handled by its label",
+      "objective": "Information has a classification label, and restricted information is stored only where the handling rules allow.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.12"
+        ],
+        "nist_csf_2_0": [
+          "ID.AM"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Classification scheme and labels on a sample of stored data",
+          "method": "Document review and metadata sample",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm the scheme defines each level and its handling rules.",
+        "Sample labelled data stores and confirm the labels are applied.",
+        "Confirm access to restricted stores is limited to approved groups."
+      ],
+      "pass_criteria": "The scheme is documented, labels are applied in the sample and restricted stores are access-limited.",
+      "common_gaps": [
+        "Labels defined but not applied",
+        "Restricted data kept in general shared folders"
+      ],
+      "abstain_when": [
+        "No classification scheme is documented",
+        "The sample cannot be read with the granted access"
+      ]
+    },
+    {
+      "id": "ISN-ACC-01",
+      "domain": "access",
+      "component": "control_assessment",
+      "title": "Access is approved on grant and removed on exit",
+      "objective": "Access is granted only after approval and is removed within the window set by policy when a person leaves or changes role.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.18"
+        ],
+        "soc2_tsc": [
+          "CC6.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Access request tickets for joiners and movers",
+          "method": "Export from the ticketing system",
+          "access": "read-only"
+        },
+        {
+          "source": "Directory account status and leavers list",
+          "method": "Read-only directory export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Sample 20 accounts created in the period and confirm an approved request exists before creation.",
+        "Sample 20 leavers and confirm each account was disabled within the policy window.",
+        "Compare enabled accounts with the current staff and contractor list."
+      ],
+      "pass_criteria": "Sampled grants have approvals, sampled leavers are disabled inside the window, and no enabled account lacks a current person.",
+      "common_gaps": [
+        "Accounts created from a template with no ticket",
+        "Leaver processing depends on a manual notification"
+      ],
+      "abstain_when": [
+        "The staff and contractor list is not available to compare",
+        "The ticket export does not cover the sample period"
+      ]
+    },
+    {
+      "id": "ISN-ACC-02",
+      "domain": "access",
+      "component": "control_assessment",
+      "title": "No wildcard permissions on production roles",
+      "objective": "No production or deployment role grants every action or every resource.",
+      "default_risk": "critical",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.15",
+          "8.2"
+        ],
+        "nist_csf_2_0": [
+          "PR.AA"
+        ],
+        "soc2_tsc": [
+          "CC6.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Policy documents attached to each production role, including inherited policies",
+          "method": "Read-only policy export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "List every role tagged as production or deployment.",
+        "Flag any statement that allows all actions or all resources, including wildcard forms of those grants.",
+        "Record the exact policy text and its hash before scoring."
+      ],
+      "pass_criteria": "No production or deployment role allows all actions on all resources.",
+      "common_gaps": [
+        "A broad role in non-production later reused for production",
+        "Broad grant reached indirectly through group membership"
+      ],
+      "abstain_when": [
+        "The role list cannot be exported",
+        "The policy text is truncated"
+      ]
+    },
+    {
+      "id": "ISN-ACC-03",
+      "domain": "access",
+      "component": "control_assessment",
+      "title": "MFA for privileged and administrative access",
+      "objective": "Every privileged or administrative account uses multi-factor authentication, and no privileged account can sign in with a password alone.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.17",
+          "8.5"
+        ],
+        "nist_csf_2_0": [
+          "PR.AA"
+        ],
+        "soc2_tsc": [
+          "CC6.1"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Credential report with MFA status per account",
+          "method": "Read-only report export",
+          "access": "read-only"
+        },
+        {
+          "source": "Conditional access or sign-in policy for privileged groups",
+          "method": "Read-only configuration export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "List the privileged group members, including break-glass accounts.",
+        "Confirm each has an active MFA factor in the credential report.",
+        "Confirm the sign-in policy requires MFA and blocks legacy protocols for privileged groups."
+      ],
+      "pass_criteria": "All privileged accounts, including break-glass accounts, have MFA and no password-only sign-in path exists.",
+      "common_gaps": [
+        "Break-glass accounts excluded from the credential report",
+        "Legacy protocols allow sign-in without MFA"
+      ],
+      "abstain_when": [
+        "The credential report is older than the reporting period",
+        "The privileged group list is not available"
+      ]
+    },
+    {
+      "id": "ISN-ACC-04",
+      "domain": "access",
+      "component": "control_assessment",
+      "title": "Dormant accounts are disabled",
+      "objective": "No enabled account has been unused for 90 days without an approved reason.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.18"
+        ],
+        "nist_csf_2_0": [
+          "PR.AA"
+        ],
+        "soc2_tsc": [
+          "CC6.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Last sign-in date for every enabled account",
+          "method": "Read-only directory export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "List enabled accounts with no sign-in for 90 days or more.",
+        "Confirm each one is disabled or has an owner's approved reason on file.",
+        "Confirm service accounts are listed and reviewed separately."
+      ],
+      "pass_criteria": "Every dormant enabled account is disabled or has an approved, dated reason.",
+      "common_gaps": [
+        "Service accounts with no sign-in data",
+        "Last sign-in not recorded for some sources"
+      ],
+      "abstain_when": [
+        "Sign-in data is missing for part of the directory"
+      ]
+    },
+    {
+      "id": "ISN-ACC-05",
+      "domain": "access",
+      "component": "control_assessment",
+      "title": "Privileged access reviewed every quarter",
+      "objective": "Each privileged access grant is reviewed every quarter by someone other than the account holder, and removals are carried out.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.2",
+          "5.18"
+        ],
+        "nist_csf_2_0": [
+          "PR.AA"
+        ],
+        "soc2_tsc": [
+          "CC6.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Quarterly access review records with reviewer sign-off",
+          "method": "Document review",
+          "access": "read-only"
+        },
+        {
+          "source": "Change records for removals identified in the reviews",
+          "method": "Export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm a review occurred in each of the last four quarters.",
+        "Confirm each reviewer is not the account holder they reviewed.",
+        "Confirm removals recorded in the reviews were carried out."
+      ],
+      "pass_criteria": "Four consecutive quarterly reviews exist, reviewers are independent and recorded removals were executed.",
+      "common_gaps": [
+        "Reviews signed off with no removals over several cycles",
+        "Review lists exported without group membership detail"
+      ],
+      "abstain_when": [
+        "No review record can be produced for the period"
+      ]
+    },
+    {
+      "id": "ISN-ACC-06",
+      "domain": "access",
+      "component": "control_assessment",
+      "title": "Secrets are stored securely and rotated",
+      "objective": "No credential is stored in source code, and every managed secret is rotated within the interval set by policy.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.17"
+        ],
+        "nist_csf_2_0": [
+          "PR.AA"
+        ],
+        "soc2_tsc": [
+          "CC6.1"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Secrets manager inventory with last-rotated dates",
+          "method": "Read-only API listing",
+          "access": "read-only"
+        },
+        {
+          "source": "Secret scan results for in-scope repositories",
+          "method": "Report export from the scanning tool",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Read the latest secret scan of in-scope repositories and count findings.",
+        "Confirm each managed secret has a rotation date within the policy interval.",
+        "Confirm the scan covers every in-scope repository."
+      ],
+      "pass_criteria": "The scan finds no live credentials in code and every managed secret is within its rotation interval.",
+      "common_gaps": [
+        "Scanner excludes some repositories",
+        "Rotation tracked but not enforced"
+      ],
+      "abstain_when": [
+        "Scanner coverage is unknown",
+        "The secrets manager listing is not accessible"
+      ]
+    },
+    {
+      "id": "ISN-TEC-01",
+      "domain": "tech",
+      "component": "vulnerability",
+      "title": "Vulnerabilities are fixed within set deadlines",
+      "objective": "Vulnerability scans cover all in-scope assets, and critical and high findings are fixed by their deadline or have an approved exception.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.8"
+        ],
+        "nist_csf_2_0": [
+          "ID.RA",
+          "DE.CM"
+        ],
+        "soc2_tsc": [
+          "CC7.1"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Vulnerability scan results and finding history",
+          "method": "Export from the scanner",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm scans of every in-scope asset ran in the last 30 days.",
+        "Count open critical and high findings that are past their deadline.",
+        "Sample 10 closed findings and confirm a fix or an approved exception."
+      ],
+      "pass_criteria": "No critical or high finding is past its deadline without an approved exception.",
+      "common_gaps": [
+        "Scanner covers servers but not containers or cloud services",
+        "Findings closed as false positives without review"
+      ],
+      "abstain_when": [
+        "Scan data for the period is not available",
+        "The asset list the scanner uses cannot be determined"
+      ]
+    },
+    {
+      "id": "ISN-TEC-02",
+      "domain": "tech",
+      "component": "vulnerability",
+      "title": "Secure configuration baseline applied",
+      "objective": "Systems follow a documented secure configuration baseline, and any drift creates a tracked finding.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.9"
+        ],
+        "nist_csf_2_0": [
+          "PR.PS"
+        ],
+        "soc2_tsc": [
+          "CC7.1"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Configuration compliance report against the baseline",
+          "method": "Report export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm a documented baseline exists for each system type in scope.",
+        "Compare a sample of production systems with the baseline.",
+        "Confirm drift alerts create tickets."
+      ],
+      "pass_criteria": "Sampled systems match the baseline or have an approved, dated deviation.",
+      "common_gaps": [
+        "Baseline documented but never measured",
+        "Deviations approved with no expiry date"
+      ],
+      "abstain_when": [
+        "No baseline is defined for the system type",
+        "No compliance report exists for the sample"
+      ]
+    },
+    {
+      "id": "ISN-TEC-03",
+      "domain": "tech",
+      "component": "cloud",
+      "title": "Production is segmented from other networks",
+      "objective": "Traffic between production and other networks is limited to approved flows, and administrative ports are not open to the internet.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.20",
+          "8.22"
+        ],
+        "nist_csf_2_0": [
+          "PR.IR"
+        ],
+        "soc2_tsc": [
+          "CC6.6"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Firewall and security group rule export",
+          "method": "Read-only configuration export",
+          "access": "read-only"
+        },
+        {
+          "source": "Network architecture diagram",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "List rules that allow traffic between production and other networks.",
+        "Flag any rule that allows traffic from any internet source to administrative ports such as 22 or 3389.",
+        "Confirm the rule export matches the architecture diagram."
+      ],
+      "pass_criteria": "Cross-network traffic follows listed, approved flows and no administrative port is open to the internet.",
+      "common_gaps": [
+        "Rules that allow broad internal address ranges",
+        "Architecture diagram out of date"
+      ],
+      "abstain_when": [
+        "The rule export is not available",
+        "No diagram exists and the rules cannot be interpreted against the scope"
+      ]
+    },
+    {
+      "id": "ISN-TEC-04",
+      "domain": "tech",
+      "component": "cloud",
+      "title": "Sensitive data is encrypted in transit and at rest",
+      "objective": "Stores of sensitive data are encrypted at rest, and public endpoints accept only current TLS versions.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.24"
+        ],
+        "nist_csf_2_0": [
+          "PR.DS"
+        ],
+        "soc2_tsc": [
+          "CC6.7"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Encryption settings for storage services holding classified data",
+          "method": "Read-only configuration export",
+          "access": "read-only"
+        },
+        {
+          "source": "TLS configuration of public endpoints the organization owns",
+          "method": "Read-only scan of owned endpoints",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "List storage services that hold restricted or confidential data and confirm encryption is enabled.",
+        "Confirm each public endpoint refuses deprecated TLS versions.",
+        "Confirm key ownership and rotation records exist for customer-managed keys."
+      ],
+      "pass_criteria": "All sensitive stores are encrypted and public endpoints accept only current TLS.",
+      "common_gaps": [
+        "Encryption enabled with default keys and no rotation record",
+        "Internal service traffic left unencrypted"
+      ],
+      "abstain_when": [
+        "Data classification is unknown, so sensitive stores cannot be identified",
+        "The endpoint list is not available"
+      ]
+    },
+    {
+      "id": "ISN-RES-01",
+      "domain": "resilience",
+      "component": "control_assessment",
+      "title": "Backups are taken and restores are tested",
+      "objective": "Backups of in-scope systems succeed, are stored apart from production administration, and a restore has been verified in the last 12 months.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.13"
+        ],
+        "nist_csf_2_0": [
+          "PR.DS"
+        ],
+        "soc2_tsc": [
+          "A1.2",
+          "A1.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Backup job history for in-scope systems",
+          "method": "Report export",
+          "access": "read-only"
+        },
+        {
+          "source": "Restore test record with the data checks performed",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm backup jobs succeeded for each in-scope system across the period.",
+        "Confirm backup storage uses separate credentials from production administrators.",
+        "Confirm a restore test occurred in the last 12 months and the restored data was checked."
+      ],
+      "pass_criteria": "Backups succeed, are separately administered, and a restore was verified within 12 months.",
+      "common_gaps": [
+        "Backups succeed but restores were never tested",
+        "Backup administration shares credentials with production administrators"
+      ],
+      "abstain_when": [
+        "The backup job history is not available",
+        "No restore test record exists"
+      ]
+    },
+    {
+      "id": "ISN-RES-02",
+      "domain": "resilience",
+      "component": "control_assessment",
+      "title": "Incident response plan exists and is exercised",
+      "objective": "A current incident response plan names roles, contacts and escalation thresholds, and it is exercised every 12 months.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.24",
+          "5.26"
+        ],
+        "nist_csf_2_0": [
+          "RS.MA"
+        ],
+        "soc2_tsc": [
+          "CC7.4"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Incident response plan with version and approval",
+          "method": "Document review",
+          "access": "read-only"
+        },
+        {
+          "source": "Exercise records (tabletop or live) and their follow-up actions",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm the plan names roles, contacts and escalation thresholds, and that the contacts are current.",
+        "Confirm an exercise occurred in the last 12 months.",
+        "Confirm each exercise finding has an owner and a due date."
+      ],
+      "pass_criteria": "A current, approved plan exists and an exercise in the last 12 months has tracked follow-up.",
+      "common_gaps": [
+        "Contact list out of date",
+        "Exercise held but its findings are not tracked"
+      ],
+      "abstain_when": [
+        "No exercise records or plan version can be produced for the period"
+      ]
+    },
+    {
+      "id": "ISN-RES-03",
+      "domain": "resilience",
+      "component": "control_assessment",
+      "title": "Continuity plans for critical services are tested",
+      "objective": "Continuity plans for critical services are tested every 12 months against a recovery time target.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.29",
+          "5.30"
+        ],
+        "nist_csf_2_0": [
+          "RC.RP"
+        ],
+        "soc2_tsc": [
+          "A1.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Business continuity test report with measured recovery times",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm a test covered each critical service in the last 12 months.",
+        "Confirm the measured recovery time was compared with the stated target.",
+        "Confirm the gaps found have owners and actions."
+      ],
+      "pass_criteria": "Each critical service was tested in the last 12 months against a stated target, and gaps are tracked.",
+      "common_gaps": [
+        "Tabletop only, with no technical recovery",
+        "No recovery time target defined"
+      ],
+      "abstain_when": [
+        "No continuity test report exists"
+      ]
+    },
+    {
+      "id": "ISN-DET-01",
+      "domain": "detect",
+      "component": "control_assessment",
+      "title": "Security logs are collected centrally and retained",
+      "objective": "Every in-scope system sends security logs to a central store, and retention meets the period set by policy.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.15"
+        ],
+        "nist_csf_2_0": [
+          "DE.CM"
+        ],
+        "soc2_tsc": [
+          "CC7.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Log source list and retention settings",
+          "method": "Read-only configuration export",
+          "access": "read-only"
+        },
+        {
+          "source": "Sample of recent events from each source",
+          "method": "Read-only query",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Compare the in-scope systems with the log source list.",
+        "Confirm the retention setting meets the policy period.",
+        "Confirm recent events from each source are present in the central store."
+      ],
+      "pass_criteria": "Every in-scope source sends logs centrally and retention meets policy.",
+      "common_gaps": [
+        "Some sources are not sending logs",
+        "Administrators can edit or delete stored logs"
+      ],
+      "abstain_when": [
+        "The log source list is not available",
+        "Retention settings cannot be read"
+      ]
+    },
+    {
+      "id": "ISN-DET-02",
+      "domain": "detect",
+      "component": "control_assessment",
+      "title": "Security alerts are reviewed and triaged",
+      "objective": "Security alerts receive a triage decision and an owner, and alert rules are reviewed every 12 months.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.25",
+          "8.16"
+        ],
+        "nist_csf_2_0": [
+          "DE.AE"
+        ],
+        "soc2_tsc": [
+          "CC7.2",
+          "CC7.3"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Alert queue export with severity, status and timestamps",
+          "method": "Export",
+          "access": "read-only"
+        },
+        {
+          "source": "Alert rule review record",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Count alerts by severity for the period and measure how long high-severity alerts stayed open.",
+        "Sample 10 high-severity alerts and confirm a triage decision and an owner.",
+        "Confirm alert rules were reviewed in the last 12 months."
+      ],
+      "pass_criteria": "Sampled high-severity alerts have a triage decision and owner, and alert rules were reviewed in the period.",
+      "common_gaps": [
+        "Alerts closed automatically without review",
+        "Alert rules tuned to suppress noise without approval"
+      ],
+      "abstain_when": [
+        "Alert history for the period is not retained"
+      ]
+    },
+    {
+      "id": "ISN-DAT-01",
+      "domain": "data",
+      "component": "control_assessment",
+      "title": "Outbound data-leakage controls are active",
+      "objective": "Data-leakage rules cover classified data types on email, web upload and cloud sharing, and blocks are dispositioned.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.12"
+        ],
+        "nist_csf_2_0": [
+          "PR.DS"
+        ],
+        "soc2_tsc": [
+          "CC6.7"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Data-leakage policy and rule configuration",
+          "method": "Read-only configuration export",
+          "access": "read-only"
+        },
+        {
+          "source": "Block and alert log for the period",
+          "method": "Export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm the rules cover each classified data type the organization holds.",
+        "Confirm monitored channels include email, web upload and cloud sharing.",
+        "Sample 10 blocks or alerts and confirm each has a recorded disposition."
+      ],
+      "pass_criteria": "Rules cover classified data on each monitored channel and sampled events have a disposition.",
+      "common_gaps": [
+        "Rules left in report-only mode indefinitely",
+        "Personal cloud storage not covered"
+      ],
+      "abstain_when": [
+        "The rule configuration cannot be read"
+      ]
+    },
+    {
+      "id": "ISN-SUP-01",
+      "domain": "supplier",
+      "component": "risk",
+      "title": "Critical suppliers are assessed",
+      "objective": "Every supplier with access to classified data is in a register with a criticality rating, and critical suppliers are assessed every 12 months.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.19",
+          "5.20",
+          "5.22"
+        ],
+        "nist_csf_2_0": [
+          "GV.SC"
+        ],
+        "soc2_tsc": [
+          "CC9.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Supplier register with criticality and last assessment date",
+          "method": "Export",
+          "access": "read-only"
+        },
+        {
+          "source": "Supplier assessment reports and the security terms in their contracts",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm each supplier with access to classified data is in the register.",
+        "Confirm each critical supplier was assessed in the last 12 months.",
+        "Confirm the contract for each sampled critical supplier contains security terms."
+      ],
+      "pass_criteria": "All suppliers with classified-data access are registered, and critical suppliers were assessed within 12 months.",
+      "common_gaps": [
+        "Questionnaire returned with no evidence behind the answers",
+        "Suppliers added through purchasing without a security review"
+      ],
+      "abstain_when": [
+        "The supplier register cannot be produced",
+        "Assessment records are missing for sampled critical suppliers"
+      ]
+    },
+    {
+      "id": "ISN-SUP-02",
+      "domain": "supplier",
+      "component": "cloud",
+      "title": "Cloud shared responsibility is documented and owned",
+      "objective": "For each cloud service in use, the security tasks the provider performs and those the organization performs are documented, and each organization task has a named owner.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "5.23"
+        ],
+        "nist_csf_2_0": [
+          "GV.SC"
+        ],
+        "soc2_tsc": [
+          "CC9.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Cloud service inventory with the provider agreements and their security terms",
+          "method": "Export and document review",
+          "access": "read-only"
+        },
+        {
+          "source": "Shared responsibility matrix with owners",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Compare the cloud service inventory with the shared responsibility matrix and count services with no matrix entry.",
+        "Confirm each organization task in the matrix has a named owner.",
+        "Confirm the provider security terms in the agreement were reviewed in the last 12 months."
+      ],
+      "pass_criteria": "Every cloud service in use has a matrix entry, and each organization task has a current owner.",
+      "common_gaps": [
+        "Matrix written once at adoption and never updated",
+        "Assumption that the provider covers configuration the organization controls"
+      ],
+      "abstain_when": [
+        "The cloud service inventory is not available",
+        "No agreement or provider security documentation can be produced"
+      ]
+    },
+    {
+      "id": "ISN-PPL-01",
+      "domain": "people",
+      "component": "executive_governance",
+      "title": "Security awareness training is completed",
+      "objective": "Every staff member and contractor completes security awareness training in each 12-month period, and people with privileged access complete role-based training.",
+      "default_risk": "medium",
+      "frameworks": {
+        "iso27001_2022": [
+          "6.3"
+        ],
+        "nist_csf_2_0": [
+          "PR.AT"
+        ],
+        "soc2_tsc": [
+          "CC1.4",
+          "CC2.2"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Training completion report from the learning system",
+          "method": "Export",
+          "access": "read-only"
+        },
+        {
+          "source": "Current list of staff and contractors",
+          "method": "Export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Compare the current staff and contractor list with completions for the period.",
+        "Confirm people with privileged access completed their role-based training.",
+        "Confirm results of any phishing exercises were reviewed and acted on."
+      ],
+      "pass_criteria": "Every person on the list completed training in the period, and privileged users completed role-based training.",
+      "common_gaps": [
+        "Completion recorded for opening slides without assessment",
+        "Contractors left out of the report"
+      ],
+      "abstain_when": [
+        "The learning system export is not available"
+      ]
+    },
+    {
+      "id": "ISN-DEV-01",
+      "domain": "dev",
+      "component": "appsec",
+      "title": "Changes are reviewed and security-tested before release",
+      "objective": "Every merged change has an independent review, and security tests run before each release.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.25",
+          "8.28",
+          "8.29"
+        ],
+        "nist_csf_2_0": [
+          "PR.PS"
+        ],
+        "soc2_tsc": [
+          "CC8.1"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Code review records for merged changes",
+          "method": "Export from the source control platform",
+          "access": "read-only"
+        },
+        {
+          "source": "Security test results in the build pipeline",
+          "method": "Export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Sample 20 merged changes and confirm an approving reviewer who is not the author.",
+        "Confirm security tests ran for each release in the period.",
+        "Confirm failing security findings were fixed or formally accepted before release."
+      ],
+      "pass_criteria": "Sampled changes have an independent approval and security findings were resolved or accepted before release.",
+      "common_gaps": [
+        "Authors can approve their own changes",
+        "Security scanners run but failures are ignored"
+      ],
+      "abstain_when": [
+        "Review metadata for the period is not exported"
+      ]
+    },
+    {
+      "id": "ISN-DEV-02",
+      "domain": "dev",
+      "component": "appsec",
+      "title": "Production changes are approved and reversible",
+      "objective": "Every production change has a recorded approval and a rollback plan, and deployments match the change records.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.32"
+        ],
+        "nist_csf_2_0": [
+          "PR.PS"
+        ],
+        "soc2_tsc": [
+          "CC8.1"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Change records with approval and rollback plan",
+          "method": "Export",
+          "access": "read-only"
+        },
+        {
+          "source": "Deployment log for production",
+          "method": "Export",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Sample 20 production changes and confirm approval before deployment.",
+        "Confirm each high-risk change has a documented rollback plan.",
+        "Compare the deployment log with change records and count deployments with no record."
+      ],
+      "pass_criteria": "Sampled changes were approved before deployment, high-risk changes have rollback plans, and no deployment is unrecorded.",
+      "common_gaps": [
+        "Emergency changes approved after the fact with no review",
+        "Deployment logs not linked to change tickets"
+      ],
+      "abstain_when": [
+        "The deployment log is not retained for the period"
+      ]
+    },
+    {
+      "id": "ISN-DEV-03",
+      "domain": "dev",
+      "component": "appsec",
+      "title": "Internet-facing applications are penetration tested",
+      "objective": "Every internet-facing application is tested by an independent tester every 12 months, and critical and high findings are retested after fixing.",
+      "default_risk": "high",
+      "frameworks": {
+        "iso27001_2022": [
+          "8.29"
+        ],
+        "nist_csf_2_0": [
+          "ID.RA"
+        ]
+      },
+      "evidence": [
+        {
+          "source": "Penetration test reports and the remediation tracker",
+          "method": "Document review",
+          "access": "read-only"
+        }
+      ],
+      "test": [
+        "Confirm a test covered each internet-facing application in the last 12 months, including APIs.",
+        "Confirm critical and high findings were verified fixed by retest.",
+        "Confirm the tester is independent of the team that built the system."
+      ],
+      "pass_criteria": "Each internet-facing application was tested in the last 12 months and critical and high findings were verified fixed.",
+      "common_gaps": [
+        "APIs excluded from scope",
+        "Findings marked fixed without a retest"
+      ],
+      "abstain_when": [
+        "No test report exists for the period"
+      ]
+    }
+  ],
+  "components": {
+    "executive_governance": {
+      "name": "Executive Governance Layer",
+      "description": "Governance and accountability that senior leaders review."
+    },
+    "compliance": {
+      "name": "Compliance Management",
+      "description": "Obligations and framework requirements, and whether policy meets them."
+    },
+    "risk": {
+      "name": "Risk Management",
+      "description": "Risks, suppliers and asset inventory that decide what matters most."
+    },
+    "control_assessment": {
+      "name": "Security Control Assessment",
+      "description": "The control objectives tested against read-only evidence."
+    },
+    "vulnerability": {
+      "name": "Vulnerability Management",
+      "description": "Finding and fixing weaknesses in systems and configuration."
+    },
+    "appsec": {
+      "name": "Application Security",
+      "description": "Secure development, change control and application testing."
+    },
+    "cloud": {
+      "name": "Cloud Security",
+      "description": "Network boundaries, encryption and shared responsibility in cloud services."
+    }
+  },
+  "companions": [
+    {
+      "name": "Compass AI",
+      "deliverable": "Executive Risk Appetite Dashboard",
+      "component": "executive_governance",
+      "question": "Which risks currently exceed our approved risk appetite?",
+      "returns": [
+        "Lists specific risks",
+        "Shows business impact",
+        "Identifies owners",
+        "Suggests actions"
+      ],
+      "requires": [
+        "Approved risk appetite statement",
+        "Risk register (ISN-RSK-01)"
+      ]
+    },
+    {
+      "name": "Radar AI",
+      "deliverable": "Business Criticality Overlay",
+      "component": "risk",
+      "question": "Which critical assets would create the greatest customer disruption if compromised?",
+      "returns": [
+        "Ranked response based on business criticality, risk levels and asset dependencies"
+      ],
+      "requires": [
+        "Business criticality ratings",
+        "Asset inventory (ISN-AST-01)",
+        "Dependency map"
+      ]
+    },
+    {
+      "name": "Atlas AI",
+      "deliverable": "Control Crosswalk",
+      "component": "compliance",
+      "question": "Which controls support both ISO 27001 and PCI DSS?",
+      "returns": [
+        "Controls",
+        "Owners",
+        "Testing results",
+        "Evidence"
+      ],
+      "requires": [
+        "Framework references for each framework compared (PCI DSS is not in the catalogue yet)"
+      ]
+    },
+    {
+      "name": "Drift AI",
+      "deliverable": "Architecture Drift Dashboard",
+      "component": "cloud",
+      "question": "What changed since last quarter that reduced our Architecture Integrity Score?",
+      "returns": [
+        "New public services",
+        "Cloud changes",
+        "Network exposure changes"
+      ],
+      "requires": [
+        "Dated configuration exports for two periods",
+        "Architecture Integrity Score definition (not yet defined)"
+      ]
+    },
+    {
+      "name": "Engineering AI Coach",
+      "deliverable": "Secure Development Scorecard",
+      "component": "appsec",
+      "question": "Why is the API team scoring lower than the Platform team?",
+      "returns": [
+        "Secret exposure trends",
+        "Open findings",
+        "Technical debt"
+      ],
+      "requires": [
+        "Secret scan history (ISN-ACC-06)",
+        "Open findings by team",
+        "Scorecard definition (not yet defined)"
+      ]
+    },
+    {
+      "name": "Cloud AI Advisor",
+      "deliverable": "Cloud Exposure Dashboard",
+      "component": "cloud",
+      "question": "What three cloud issues should we fix first to reduce risk fastest?",
+      "returns": [
+        "Exact misconfigurations",
+        "Impact analysis",
+        "Remediation sequence"
+      ],
+      "requires": [
+        "Cloud configuration evidence (ISN-TEC-03, ISN-ACC-02)",
+        "Impact ratings from the asset inventory"
+      ]
+    },
+    {
+      "name": "Debt Reduction AI",
+      "deliverable": "Security Debt Dashboard",
+      "component": "vulnerability",
+      "question": "What remediation activities reduce the most debt per engineering hour?",
+      "returns": [
+        "Optimization recommendations"
+      ],
+      "requires": [
+        "Open findings with effort estimates (effort data not yet defined)"
+      ]
+    },
+    {
+      "name": "Assurance AI",
+      "deliverable": "Control Effectiveness Dashboard",
+      "component": "control_assessment",
+      "question": "Which controls are trending toward failure?",
+      "returns": [
+        "SLA degradation",
+        "Patch performance declines",
+        "Compliance risks"
+      ],
+      "requires": [
+        "At least two assessment periods of control results",
+        "Patch and SLA history"
+      ]
+    },
+    {
+      "name": "Forecast AI",
+      "deliverable": "Future Risk Projection",
+      "component": "risk",
+      "question": "If we delay remediation 90 days, what happens to risk exposure?",
+      "returns": [
+        "Risk growth",
+        "Control degradation",
+        "Compliance impact"
+      ],
+      "requires": [
+        "Risk scores over time",
+        "A validated risk-growth model (not yet defined)"
+      ]
+    },
+    {
+      "name": "Audit AI",
+      "deliverable": "Compliance Dashboard",
+      "component": "compliance",
+      "question": "Show all evidence supporting SOC 2 CC6 controls.",
+      "returns": [
+        "Policies",
+        "Logs",
+        "Testing records",
+        "Evidence from the platform"
+      ],
+      "requires": [
+        "Evidence records with hashes (spec/finding.schema.json)",
+        "Platform connector (not built)"
+      ]
+    },
+    {
+      "name": "Route Planner AI",
+      "deliverable": "Remediation Roadmap",
+      "component": "vulnerability",
+      "question": "What's the optimal remediation sequence for maximum risk reduction?",
+      "returns": [
+        "Milestones",
+        "Resource estimates",
+        "ROI analysis"
+      ],
+      "requires": [
+        "Prioritized findings",
+        "Cost and effort inputs (not yet defined)"
+      ]
+    },
+    {
+      "name": "Health AI",
+      "deliverable": "Cyber Health Score",
+      "component": "executive_governance",
+      "question": "Why did our Cyber Health Score decline by seven points?",
+      "returns": [
+        "Root-cause analysis"
+      ],
+      "requires": [
+        "Score history with its inputs",
+        "Cyber Health Score definition (not yet defined)"
+      ]
+    },
+    {
+      "name": "Executive AI Advisor",
+      "deliverable": "Technical-to-Business Translation",
+      "component": "executive_governance",
+      "question": "Explain our cybersecurity posture in terms a board member would understand.",
+      "returns": [
+        "Board summary",
+        "Strategic risks",
+        "Financial implications"
+      ],
+      "requires": [
+        "Assessment results with evidence",
+        "Financial impact inputs (not yet defined)"
+      ]
+    },
+    {
+      "name": "Accountability AI",
+      "deliverable": "Ownership Heat Map",
+      "component": "executive_governance",
+      "question": "Which teams are responsible for the majority of unresolved high risks?",
+      "returns": [
+        "Teams",
+        "Trends",
+        "Root causes",
+        "Resource constraints"
+      ],
+      "requires": [
+        "Owner on every risk and finding (ISN-GOV-02)",
+        "Open high risks"
+      ]
+    },
+    {
+      "name": "Maturity AI",
+      "deliverable": "Maturity Model",
+      "component": "executive_governance",
+      "question": "What investments move us from Level 3 to Level 4 fastest?",
+      "returns": [
+        "Controls",
+        "Governance improvements",
+        "Staffing changes",
+        "Technology enhancements"
+      ],
+      "requires": [
+        "Maturity model with level definitions (not yet defined)",
+        "Current assessment results"
+      ]
+    }
+  ]
+}
