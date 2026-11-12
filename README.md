@@ -41,6 +41,7 @@ A strong average does not hide the one critical failure, and the missing evidenc
 | `samples/controls.sample.json` | 17 synthetic controls across identity, cloud, AI governance, data and privacy |
 | `samples/workpaper.sample.md` | A sample audit workpaper |
 | `tools/assurance_index.py` | Validator and reference index calculator |
+| `infosec-navigator/` | InfoSec Navigator: information security control catalogue, architecture and companion specification, with its own README, validator and tests |
 
 ## How the design works
 
@@ -59,6 +60,8 @@ A strong average does not hide the one critical failure, and the missing evidenc
 | Draft index calculator with severity and coverage caps | Built |
 | Synthetic sample data and workpaper | Built |
 | Prototype site | Built |
+| InfoSec Navigator catalogue, validator, tests and page | Built (design draft) |
+| InfoSec Navigator AI companions, knowledge layer, Aikido connector, Digital Twin | Specified only |
 | AI assessment agents | Specified only |
 | Cloud and identity connectors | Specified only |
 | Repeatability, accuracy and egress testing | Specified only |

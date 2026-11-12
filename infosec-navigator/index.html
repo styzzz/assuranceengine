@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="InfoSec Navigator: find each information security control, the read-only evidence that proves it, and the ISO 27001, NIST CSF and SOC 2 requirements it maps to.">
+<meta name="theme-color" content="#101b2d">
+<title>InfoSec Navigator | AssuranceEngine</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#101b2d;--panel:#17263a;--panel-2:#1c3045;--line:#30445b;--text:#edf3f7;--muted:#a9bac9;--teal:#68dfc2;--gold:#edbd70;--blue:#8ebeff;--violet:#c4a4ff;--red:#ff9c8a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#1d3348 0,transparent 58%),var(--bg);color:var(--text);font:16px/1.6 "DM Sans",system-ui,sans-serif;min-height:100vh}
+a{color:var(--teal)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.wrap{width:min(1120px,calc(100% - 40px));margin-inline:auto}
+.topbar{border-bottom:1px solid #ffffff16}
+.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:14px 0}
+.brand{color:var(--text);text-decoration:none;font-weight:700;letter-spacing:.07em}
+.brand span{color:var(--teal)}
+.module{font:600 11px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid #edbd7060;border-radius:999px;padding:5px 10px}
+.nav-link{color:var(--muted);font-size:14px;text-decoration:none}
+.label,.eyebrow{font:600 11px/1.4 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase}
+.eyebrow{color:var(--teal)}
+.hero{padding:56px 0 28px}
+h1,h2,h3,p{margin-top:0}
+h1{max-width:860px;margin:14px 0 14px;font-size:clamp(34px,5vw,56px);line-height:1.06;letter-spacing:-.04em}
+h1 em{color:var(--teal);font-style:normal}
+.lede{max-width:760px;margin:0;color:var(--muted);font-size:18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.stat{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.stat strong{display:block;font-size:26px;line-height:1.1}
+.stat span{color:var(--muted);font-size:13px}
+.toolbar{margin-top:28px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.row{display:grid;grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{color:var(--muted);font-size:12px}
+.field input,.field select{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:#0e1a2a;min-width:0}
+.field input::placeholder{color:#7f93a7}
+.chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.filter{padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--muted);font-size:13px;cursor:pointer}
+.filter[aria-pressed="true"]{border-color:var(--teal);color:var(--text);background:#68dfc214}
+.filter small{color:var(--muted);font-family:"IBM Plex Mono",monospace;font-size:11px;margin-left:4px}
+.summary{margin:18px 0 10px;color:var(--muted);font-size:14px}
+.list{display:grid;gap:12px}
+.card{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#17263aee,#122033f2)}
+.card-head{padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.card-id{font:500 12px "IBM Plex Mono",monospace;color:var(--teal);letter-spacing:.04em}
+.card h3{margin:4px 0 6px;font-size:18px;line-height:1.3}
+.card p.objective{margin:0;color:var(--muted);font-size:14px}
+.risk{justify-self:start;font:600 10px "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;border:1px solid;white-space:nowrap}
+.risk.critical{color:var(--red);border-color:#ff9c8a80;background:#ff9c8a12}
+.risk.high{color:var(--gold);border-color:#edbd7080;background:#edbd7010}
+.risk.medium{color:var(--blue);border-color:#8ebeff60;background:#8ebeff0d}
+.risk.low{color:var(--teal);border-color:#68dfc260;background:#68dfc20d}
+.tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 20px 16px}
+.tag{padding:4px 7px;border:1px solid #ffffff20;border-radius:5px;color:#d4dfeb;font:11px "IBM Plex Mono",monospace;white-space:nowrap}
+.tag.iso{border-color:#8ebeff50;color:#cfe3ff}
+.tag.nist{border-color:#68dfc250;color:#c8f5ea}
+.tag.soc{border-color:#c4a4ff55;color:#ddcfff}
+.toggle{margin:0 20px 18px;padding:9px 14px;border:1px solid var(--teal);border-radius:8px;background:transparent;color:var(--teal);font-weight:600;font-size:13px;cursor:pointer}
+.toggle:hover{background:#68dfc214}
+.details{display:none;padding:0 20px 22px;border-top:1px solid #ffffff14}
+.details.open{display:block}
+.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:18px}
+.block h4{margin:0 0 8px;font:600 11px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.block ul,.block ol{margin:0;padding-left:18px;color:#d4dfeb;font-size:14px}
+.block li{margin-bottom:6px}
+.block p{margin:0;font-size:14px;color:#d4dfeb}
+.ev-source{display:block;color:#d4dfeb}
+.ev-meta{display:block;margin-top:2px;color:var(--muted);font-size:12px}
+.access{font:600 10px "IBM Plex Mono",monospace;color:var(--teal);border:1px solid #68dfc260;border-radius:4px;padding:1px 5px;margin-left:6px;white-space:nowrap}
+.refs{margin-top:16px;display:grid;gap:6px}
+.ref{display:grid;grid-template-columns:auto 1fr;gap:10px;font-size:13px;color:var(--muted)}
+.ref b{font-family:"IBM Plex Mono",monospace;font-weight:500;color:#d4dfeb;white-space:nowrap}
+.arch{display:grid;gap:10px}
+.layer{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#0e1a2a}
+.layer.platform,.layer.knowledge{border-style:dashed;background:transparent}
+.layer-no{font:600 11px "IBM Plex Mono",monospace;color:var(--teal);min-width:28px}
+.layer h3{margin:0 0 2px;font-size:16px}
+.layer p{margin:0;color:var(--muted);font-size:13px}
+.layer button{padding:7px 11px;border:1px solid var(--teal);border-radius:8px;background:transparent;color:var(--teal);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.layer button:hover{background:#68dfc214}
+.pill{font:600 10px "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:6px;border:1px solid #edbd7080;color:var(--gold);white-space:nowrap}
+.companions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.comp{padding:18px;border:1px dashed #c4a4ff66;border-radius:14px;background:#c4a4ff08;display:flex;flex-direction:column;gap:10px;min-width:0}
+.comp h3{margin:0;font-size:17px}
+.comp .deliv{margin:0;color:var(--muted);font-size:12px}
+.comp blockquote{margin:0;padding-left:12px;border-left:3px solid var(--violet);color:#e6dcff;font-size:14px}
+.comp h4{margin:4px 0 4px;font:600 10px "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.comp ul{margin:0;padding-left:18px;color:#d4dfeb;font-size:13px}
+.comp li{margin-bottom:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.empty{padding:28px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+.section{padding:56px 0 0}
+.section-title{margin-bottom:18px}
+h2.heading{margin:8px 0 8px;font-size:clamp(24px,3.4vw,32px);line-height:1.15;letter-spacing:-.02em}
+.section-title p{margin:0;color:var(--muted);max-width:720px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.panel{padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.panel h3{margin:0 0 10px;font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid #ffffff12;vertical-align:top}
+th{color:var(--muted);font:600 11px "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+td.num{font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+.state{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;font-size:14px;align-items:baseline}
+.state b{font-family:"IBM Plex Mono",monospace;font-weight:500;color:var(--teal);white-space:nowrap}
+.state span{color:var(--muted)}
+.gap-list{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.7}
+.gap-list code{font-family:"IBM Plex Mono",monospace;color:#d4dfeb}
+.notice{margin-top:18px;padding:14px 16px;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;background:#edbd700e;color:var(--muted);font-size:13px}
+.footer{margin-top:56px;padding:24px 0;border-top:1px solid #ffffff18;color:var(--muted);font-size:12px}
+.footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+@media(max-width:860px){.row{grid-template-columns:minmax(0,1fr)}.row>.field{width:100%}.stats{grid-template-columns:repeat(2,1fr)}.two,.details-grid,.companions{grid-template-columns:1fr}.layer{grid-template-columns:auto 1fr}.layer button{grid-column:1/-1;justify-self:start}}
+@media(max-width:520px){.wrap{width:min(100% - 32px,1120px)}.hero{padding-top:36px}.card-head{grid-template-columns:1fr;gap:8px}.toggle{margin:0 16px 16px}.tags,.details{padding-left:16px;padding-right:16px}.card-head{padding:16px}.stat strong{font-size:22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="../index.html">ASSURANCE<span>ENGINE</span></a>
+    <span class="module">InfoSec Navigator</span>
+    <a class="nav-link" href="../index.html">Back to prototype home &rarr;</a>
+  </nav>
+</div>
+
+<main>
+  <header class="wrap hero">
+    <div class="eyebrow">Information security module</div>
+    <h1>Find the control, the evidence that proves it, <em>and the requirement it meets.</em></h1>
+    <p class="lede">The InfoSec Navigator is a catalogue of information security control objectives. For each one it lists the read-only evidence an assessor needs, the test steps, the pass criteria, and the conditions under which the assessor must abstain instead of concluding.</p>
+
+    <div class="stats" id="stats" aria-live="polite"></div>
+  </header>
+
+  <section class="wrap" aria-labelledby="browse-title">
+    <div class="toolbar" role="search">
+      <div class="row">
+        <div class="field">
+          <label for="q">Search by control, topic or reference (e.g. 8.2, PR.AA, CC6.1)</label>
+          <input id="q" type="search" placeholder="e.g. privileged access, logging, PR.DS" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="risk">Default risk</label>
+          <select id="risk">
+            <option value="">All risk levels</option>
+            <option value="critical">Critical</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fw">Framework</label>
+          <select id="fw">
+            <option value="">All frameworks</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="comp">Navigator component</label>
+          <select id="comp">
+            <option value="">All components</option>
+          </select>
+        </div>
+      </div>
+      <div class="chips-row" id="domains" role="group" aria-label="Filter by domain"></div>
+    </div>
+
+    <h2 id="browse-title" class="sr-only">Controls</h2>
+    <p class="summary" id="summary" aria-live="polite"></p>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="arch-title">
+    <div class="section-title">
+      <div class="eyebrow">Architecture</div>
+      <h2 class="heading" id="arch-title">How the Navigator fits together</h2>
+      <p>Seven operating components sit on a knowledge layer and a platform layer. Select a component to filter the controls above. The knowledge and platform layers are design intent and are not built.</p>
+    </div>
+    <div class="arch" id="arch"></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="ai-title">
+    <div class="section-title">
+      <div class="eyebrow">Specified, not built</div>
+      <h2 class="heading" id="ai-title">NAVIGATOR AI companions</h2>
+      <p>Each companion answers one executive or engineering question from the control records. None of them exists in this repository yet. Each one lists what it needs before it can answer. Where that evidence is missing, the answer must be insufficient evidence, not a guess.</p>
+    </div>
+    <div class="companions" id="companions"></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="coverage-title">
+    <div class="section-title">
+      <div class="eyebrow">Coverage</div>
+      <h2 class="heading" id="coverage-title">What the catalogue covers, and what it does not yet</h2>
+      <p>Every framework reference the catalogue uses is counted. References with no control yet are listed as gaps so they are not mistaken for coverage.</p>
+    </div>
+    <div class="two">
+      <div class="panel">
+        <h3>Framework references mapped</h3>
+        <table>
+          <thead><tr><th>Framework</th><th>Mapped</th><th>In reference set</th></tr></thead>
+          <tbody id="coverage-body"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <h3>Reference IDs with no control yet</h3>
+        <div id="gaps"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="states-title">
+    <div class="section-title">
+      <div class="eyebrow">Reading a result</div>
+      <h2 class="heading" id="states-title">The six assessment states</h2>
+      <p>Each control assessment in the AssuranceEngine ends in one of these states. The Navigator defines the question and the evidence. It does not make the conclusion.</p>
+    </div>
+    <div class="panel">
+      <div class="state" id="states"></div>
+      <div class="notice">No evidence means no finding. If an abstain condition on a card applies, the assessor records <b>insufficient_evidence</b> with that reason. A person approves every conclusion before it counts.</div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span id="footer-status">Design draft. Synthetic guidance. Not an audit opinion.</span>
+    <span>Generated from <code>controls.json</code> by <code>build.py</code>. Framework references must be checked against licensed texts before use.</span>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA = window.INFOSEC_NAVIGATOR;
+  var FW_CLASS = { iso27001_2022: "iso", nist_csf_2_0: "nist", soc2_tsc: "soc" };
+  var FW_SHORT = { iso27001_2022: "ISO 27001:2022", nist_csf_2_0: "NIST CSF 2.0", soc2_tsc: "SOC 2 TSC" };
+  var state = { q: "", risk: "", fw: "", domain: "", component: "" };
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined && text !== null) n.textContent = text;
+    return n;
+  }
+
+  function refsOf(control) {
+    var out = [];
+    Object.keys(control.frameworks).forEach(function (fw) {
+      control.frameworks[fw].forEach(function (ref) {
+        out.push({ fw: fw, ref: ref, name: DATA.frameworks[fw].ids[ref] });
+      });
+    });
+    return out;
+  }
+
+  function matches(control) {
+    if (state.risk && control.default_risk !== state.risk) return false;
+    if (state.domain && control.domain !== state.domain) return false;
+    if (state.fw && !control.frameworks[state.fw]) return false;
+    if (state.component && control.component !== state.component) return false;
+    if (!state.q) return true;
+    var haystack = [control.id, control.title, control.objective, control.pass_criteria,
+      DATA.domains[control.domain].name, DATA.components[control.component].name].concat(control.test, control.common_gaps, control.abstain_when)
+      .concat(refsOf(control).map(function (r) { return r.ref + " " + r.name + " " + FW_SHORT[r.fw]; }))
+      .join(" ").toLowerCase();
+    return state.q.toLowerCase().split(/\s+/).every(function (term) {
+      return haystack.indexOf(term) !== -1;
+    });
+  }
+
+  function renderStats() {
+    var controls = DATA.controls;
+    var fwKeys = Object.keys(DATA.frameworks);
+    var mapped = 0, total = 0;
+    fwKeys.forEach(function (fw) {
+      var used = {};
+      controls.forEach(function (c) { (c.frameworks[fw] || []).forEach(function (r) { used[r] = true; }); });
+      mapped += Object.keys(used).length;
+      total += Object.keys(DATA.frameworks[fw].ids).length;
+    });
+    var items = [
+      [controls.length, "controls in the catalogue"],
+      [Object.keys(DATA.domains).length, "security domains"],
+      [fwKeys.length, "frameworks referenced"],
+      [mapped + " / " + total, "framework references mapped"]
+    ];
+    var box = $("stats");
+    box.textContent = "";
+    items.forEach(function (it) {
+      var s = el("div", "stat");
+      s.appendChild(el("strong", null, String(it[0])));
+      s.appendChild(el("span", null, it[1]));
+      box.appendChild(s);
+    });
+  }
+
+  function populateComponents() {
+    var sel = $("comp");
+    Object.keys(DATA.components).forEach(function (key) {
+      var o = el("option", null, DATA.components[key].name);
+      o.value = key;
+      sel.appendChild(o);
+    });
+  }
+
+  function renderArchitecture() {
+    var box = $("arch");
+    box.textContent = "";
+    Object.keys(DATA.components).forEach(function (key, i) {
+      var n = DATA.controls.filter(function (c) { return c.component === key; }).length;
+      var comp = DATA.components[key];
+      var row = layer(String(i + 1).padStart(2, "0"), comp.name, comp.description + " " + n + " control(s).", "filter", key);
+      box.appendChild(row);
+    });
+    var k = layer("··", "NAVIGATOR AI knowledge layer", "Policies, standards, risk registers and framework content as one knowledge base. Not built.", "pill");
+    k.classList.add("knowledge");
+    box.appendChild(k);
+    var p = layer("··", "Platform connectors (Aikido)", "Platform data such as findings, cloud and secure-development metrics. Not integrated.", "pill");
+    p.classList.add("platform");
+    box.appendChild(p);
+  }
+
+  function layer(num, title, desc, mode, key) {
+    var row = el("div", "layer");
+    row.appendChild(el("span", "layer-no", num));
+    var body = el("div");
+    body.appendChild(el("h3", null, title));
+    if (desc) body.appendChild(el("p", null, desc));
+    row.appendChild(body);
+    if (mode === "filter") {
+      var b = el("button", null, "Show controls");
+      b.type = "button";
+      b.addEventListener("click", function () {
+        state.component = key;
+        $("comp").value = key;
+        renderList();
+        $("list").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      row.appendChild(b);
+    } else if (mode === "pill") {
+      row.appendChild(el("span", "pill", "Specified only"));
+    }
+    return row;
+  }
+
+  function renderCompanions() {
+    var box = $("companions");
+    box.textContent = "";
+    DATA.companions.forEach(function (ai) {
+      var card = el("article", "comp");
+      card.appendChild(el("span", "pill", "Specified, not built"));
+      card.appendChild(el("h3", null, ai.name));
+      card.appendChild(el("p", "deliv", "Extends: " + ai.deliverable + " (" + DATA.components[ai.component].name + ")"));
+      var q = el("blockquote", null, ai.question);
+      card.appendChild(q);
+      card.appendChild(el("h4", null, "Returns"));
+      var r = el("ul");
+      ai.returns.forEach(function (t) { r.appendChild(el("li", null, t)); });
+      card.appendChild(r);
+      card.appendChild(el("h4", null, "Requires first"));
+      var rq = el("ul");
+      ai.requires.forEach(function (t) { rq.appendChild(el("li", null, t)); });
+      card.appendChild(rq);
+      box.appendChild(card);
+    });
+  }
+
+  function populateFrameworks() {
+    var fwSelect = $("fw");
+    Object.keys(DATA.frameworks).forEach(function (fw) {
+      var o = el("option", null, DATA.frameworks[fw].name);
+      o.value = fw;
+      fwSelect.appendChild(o);
+    });
+  }
+
+  function renderFilters() {
+    var box = $("domains");
+    box.textContent = "";
+    box.appendChild(domainButton("", "All domains", DATA.controls.length));
+    Object.keys(DATA.domains).forEach(function (key) {
+      var count = DATA.controls.filter(function (c) { return c.domain === key; }).length;
+      box.appendChild(domainButton(key, DATA.domains[key].name, count));
+    });
+  }
+
+  function domainButton(key, label, count) {
+    var b = el("button", "filter", label);
+    b.type = "button";
+    b.setAttribute("aria-pressed", String(state.domain === key));
+    var c = el("small", null, String(count));
+    b.appendChild(c);
+    b.addEventListener("click", function () {
+      state.domain = key;
+      renderFilters();
+      renderList();
+    });
+    return b;
+  }
+
+  function block(title, items, ordered) {
+    var wrap = el("div", "block");
+    wrap.appendChild(el("h4", null, title));
+    var list = el(ordered ? "ol" : "ul");
+    items.forEach(function (t) { list.appendChild(el("li", null, t)); });
+    wrap.appendChild(list);
+    return wrap;
+  }
+
+  function buildDetails(c, id) {
+    var panel = el("div", "details");
+    panel.id = id;
+    var grid = el("div", "details-grid");
+
+    var evWrap = el("div", "block");
+    evWrap.appendChild(el("h4", null, "Evidence to collect"));
+    var evList = el("ul");
+    c.evidence.forEach(function (ev) {
+      var li = el("li");
+      var src = el("span", "ev-source", ev.source);
+      li.appendChild(src);
+      var meta = el("span", "ev-meta", ev.method);
+      meta.appendChild(el("span", "access", ev.access));
+      li.appendChild(meta);
+      evList.appendChild(li);
+    });
+    evWrap.appendChild(evList);
+    grid.appendChild(evWrap);
+
+    grid.appendChild(block("Test procedure", c.test, true));
+
+    var pass = el("div", "block");
+    pass.appendChild(el("h4", null, "Pass criteria"));
+    pass.appendChild(el("p", null, c.pass_criteria));
+    grid.appendChild(pass);
+
+    grid.appendChild(block("Common gaps", c.common_gaps, false));
+    grid.appendChild(block("Assessor must abstain when", c.abstain_when, false));
+
+    panel.appendChild(grid);
+
+    var refs = el("div", "refs");
+    refs.setAttribute("aria-label", "Framework references");
+    refsOf(c).forEach(function (r) {
+      var row = el("div", "ref");
+      row.appendChild(el("b", null, FW_SHORT[r.fw] + " " + r.ref));
+      row.appendChild(el("span", null, r.name));
+      refs.appendChild(row);
+    });
+    panel.appendChild(refs);
+    return panel;
+  }
+
+  function buildCard(c, index) {
+    var article = el("article", "card");
+    article.id = c.id;
+
+    var head = el("div", "card-head");
+    var left = el("div");
+    left.appendChild(el("div", "card-id", c.id + "  ·  " + DATA.domains[c.domain].name));
+    var h = el("h3", null, c.title);
+    left.appendChild(h);
+    left.appendChild(el("p", "objective", c.objective));
+    head.appendChild(left);
+    head.appendChild(el("span", "risk " + c.default_risk, c.default_risk));
+    article.appendChild(head);
+
+    var tags = el("div", "tags");
+    refsOf(c).forEach(function (r) {
+      tags.appendChild(el("span", "tag " + FW_CLASS[r.fw], r.ref));
+    });
+    article.appendChild(tags);
+
+    var panelId = "panel-" + index;
+    var btn = el("button", "toggle", "Show evidence and test steps");
+    btn.type = "button";
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", panelId);
+    var details = buildDetails(c, panelId);
+    btn.addEventListener("click", function () {
+      var open = details.classList.toggle("open");
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? "Hide evidence and test steps" : "Show evidence and test steps";
+    });
+    article.appendChild(btn);
+    article.appendChild(details);
+    return article;
+  }
+
+  function renderList() {
+    var list = $("list");
+    var shown = DATA.controls.filter(matches);
+    list.textContent = "";
+    $("summary").textContent = "Showing " + shown.length + " of " + DATA.controls.length + " controls.";
+    if (!shown.length) {
+      list.appendChild(el("div", "empty", "No controls match these filters. Clear the search or pick another domain."));
+      return;
+    }
+    shown.forEach(function (c, i) { list.appendChild(buildCard(c, i)); });
+  }
+
+  function renderCoverage() {
+    var body = $("coverage-body");
+    body.textContent = "";
+    var gaps = $("gaps");
+    gaps.textContent = "";
+    var gapList = el("ul", "gap-list");
+    gapList.style.listStyle = "none";
+    gapList.style.padding = "0";
+
+    Object.keys(DATA.frameworks).forEach(function (fw) {
+      var ids = DATA.frameworks[fw].ids;
+      var used = {};
+      DATA.controls.forEach(function (c) { (c.frameworks[fw] || []).forEach(function (r) { used[r] = true; }); });
+      var usedKeys = Object.keys(used);
+      var tr = el("tr");
+      tr.appendChild(el("td", null, DATA.frameworks[fw].name));
+      tr.appendChild(el("td", "num", String(usedKeys.length)));
+      tr.appendChild(el("td", "num", String(Object.keys(ids).length)));
+      body.appendChild(tr);
+
+      var missing = Object.keys(ids).filter(function (r) { return !used[r]; });
+      if (missing.length) {
+        var li = el("li");
+        var code = el("code", null, FW_SHORT[fw] + ": " + missing.join(", "));
+        li.appendChild(code);
+        gapList.appendChild(li);
+      }
+    });
+    if (!gapList.childNodes.length) {
+      gaps.appendChild(el("p", null, "Every listed reference is mapped to at least one control."));
+    } else {
+      gaps.appendChild(el("p", null, "These references are part of the reference set but no control uses them yet."));
+      gaps.appendChild(gapList);
+    }
+  }
+
+  function renderStates() {
+    var box = $("states");
+    box.textContent = "";
+    Object.keys(DATA.engine_states).forEach(function (key) {
+      box.appendChild(el("b", null, key));
+      box.appendChild(el("span", null, DATA.engine_states[key]));
+    });
+  }
+
+  function bind() {
+    $("q").addEventListener("input", function (e) { state.q = e.target.value.trim(); renderList(); });
+    $("risk").addEventListener("change", function (e) { state.risk = e.target.value; renderList(); });
+    $("fw").addEventListener("change", function (e) { state.fw = e.target.value; renderList(); });
+    $("comp").addEventListener("change", function (e) { state.component = e.target.value; renderList(); });
+  }
+
+  function init() {
+    if (!DATA) {
+      $("summary").textContent = "The control data could not be loaded. Run python3 infosec-navigator/build.py to generate data.js.";
+      return;
+    }
+    $("footer-status").textContent = "Design draft, schema " + DATA.schema_version + ". Synthetic guidance. Not an audit opinion.";
+    renderStats();
+    populateFrameworks();
+    populateComponents();
+    renderFilters();
+    renderList();
+    renderArchitecture();
+    renderCompanions();
+    renderCoverage();
+    renderStates();
+    bind();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
