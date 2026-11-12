@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="InfoSec Navigator: an information security module for AssuranceEngine. Control objectives, read-only evidence, and framework mapping, with abstention built in.">
+<meta name="theme-color" content="#0d1a26">
+<title>InfoSec Navigator | AssuranceEngine</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="theme.css">
+<style>
+.hero{padding:84px 0 56px;border-bottom:1px solid #ffffff12;background-image:linear-gradient(#15283a 1px,transparent 1px),linear-gradient(90deg,#15283a 1px,transparent 1px);background-size:56px 56px}
+.hero-inner{max-width:860px}
+h1{margin:16px 0 18px;font-size:clamp(40px,6vw,64px);line-height:1.04;font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:44px}
+.comp-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0;padding:0;list-style:none}
+.comp-list li{padding:14px;border:1px solid var(--line);border-radius:10px;background:#0f1f30;font-size:13px;color:var(--muted)}
+.comp-list b{display:block;color:var(--text);font-size:14px;margin-bottom:2px}
+.q{padding:20px;border:1px dashed #b7a2f266;border-radius:14px;background:#b7a2f209;display:flex;flex-direction:column;gap:10px}
+.q blockquote{margin:0;padding-left:12px;border-left:3px solid var(--lilac);color:#e6dcff;font-size:15px}
+.q h3{margin:0;font-size:16px}
+.q p{margin:0;color:var(--muted);font-size:13px}
+.two-col-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:28px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#14263aee,#0f2033f2)}
+@media(max-width:900px){.stats,.comp-list{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.hero{padding:52px 0 40px}.stats,.comp-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="../index.html">ASSURANCE<span>ENGINE</span></a>
+    <span class="module">InfoSec Navigator</span>
+    <a class="nav-link" href="../index.html">Back to prototype home &rarr;</a>
+  </nav>
+</div>
+
+<main>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Information security module</div>
+      <h1>Know which security controls work, <em>and what proves it.</em></h1>
+      <p class="lede">The InfoSec Navigator turns information security objectives into testable controls. Each one names the read-only evidence an assessor needs, the test steps, and the conditions under which the assessor must abstain instead of guessing.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="index.html">Open the navigator</a>
+        <a class="btn btn-ghost" href="map.html">See how a control becomes a result</a>
+      </div>
+      <div class="stats" id="stats" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <section class="wrap section" aria-labelledby="why-title">
+    <div class="section-title">
+      <div class="eyebrow">Why it exists</div>
+      <h2 class="heading" id="why-title">Security reports say a control exists. They rarely show it works today.</h2>
+      <p>Most information security reviews sample a few items at one point in time and record a yes or no. The navigator asks a narrower question and requires proof for each answer.</p>
+    </div>
+    <div class="grid-3">
+      <article class="panel"><span class="step-num">01</span><h3 style="margin-top:10px">Controls drift</h3><p>A control that passed in March can fail in June. Without a freshness window and a repeatable test, the result goes stale unnoticed.</p></article>
+      <article class="panel"><span class="step-num">02</span><h3 style="margin-top:10px">Frameworks overlap</h3><p>ISO 27001, NIST CSF and SOC 2 ask for much of the same thing in different words. Mapping one control to all three avoids testing it three times.</p></article>
+      <article class="panel"><span class="step-num">03</span><h3 style="margin-top:10px">Guesses look like findings</h3><p>When evidence is missing, a summary often reads as a pass. The navigator makes the missing evidence the result: insufficient evidence, with the reason written down.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="how-title">
+    <div class="section-title">
+      <div class="eyebrow">How it works</div>
+      <h2 class="heading" id="how-title">Four steps from objective to a reviewed result</h2>
+      <p>The same steps apply to every control in the catalogue.</p>
+    </div>
+    <div class="grid-4">
+      <div class="step"><span class="step-num">STEP 01</span><h3>Choose the objective</h3><p>Pick a control from one of seven architecture components, such as Cloud Security or Application Security.</p></div>
+      <div class="step"><span class="step-num">STEP 02</span><h3>Collect read-only evidence</h3><p>Each evidence source is read-only. The excerpt is hashed when it is collected so any later change is detectable.</p></div>
+      <div class="step"><span class="step-num">STEP 03</span><h3>Run the test steps</h3><p>The assessor follows the written test steps and compares the evidence with the pass criteria.</p></div>
+      <div class="step"><span class="step-num">STEP 04</span><h3>Decide, then review</h3><p>The result is one of six states. A person approves it. Missing evidence is recorded as insufficient evidence.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="scope-title">
+    <div class="section-title">
+      <div class="eyebrow">What is in the catalogue</div>
+      <h2 class="heading" id="scope-title">Seven components, one control library</h2>
+      <p>Each control belongs to one component, and each maps to framework references. Counts below come from the catalogue itself.</p>
+    </div>
+    <ul class="comp-list" id="components"></ul>
+  </section>
+
+  <section class="wrap section" aria-labelledby="ai-title">
+    <div class="section-title">
+      <div class="eyebrow">Specified, not built</div>
+      <h2 class="heading" id="ai-title">Companions planned on top of the catalogue</h2>
+      <p>These are questions the catalogue is meant to answer later. None of them runs yet. Each one lists what it needs first, and it must abstain when that evidence is missing.</p>
+    </div>
+    <div class="grid-3" id="companions"></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="status-title">
+    <div class="two-col-cta">
+      <div>
+        <div class="eyebrow">Status</div>
+        <h2 class="heading" id="status-title" style="font-size:28px">What is built, and what is not</h2>
+        <p style="color:var(--muted);margin:0;max-width:640px">The catalogue, validator, tests and navigator page are built. The companions, knowledge layer, platform connector and digital twin are specified only. Framework references still need checking against licensed texts before any assessment uses them.</p>
+      </div>
+      <a class="btn btn-primary" href="index.html">Open the navigator</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>Design draft. Synthetic guidance. Not an audit opinion.</span>
+    <span>Data from <code>data.js</code>, generated from <code>controls.json</code>.</span>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.INFOSEC_NAVIGATOR;
+  function el(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+  if (!D) return;
+
+  var fwCount = Object.keys(D.frameworks).length;
+  var stats = [
+    [D.controls.length, "control objectives"],
+    [Object.keys(D.components).length, "architecture components"],
+    [fwCount, "framework references used"],
+    [D.companions.length, "companions (specified only)"]
+  ];
+  var sBox = document.getElementById("stats");
+  stats.forEach(function (s) {
+    var box = el("div", "stat");
+    box.appendChild(el("strong", null, String(s[0])));
+    box.appendChild(el("span", null, s[1]));
+    sBox.appendChild(box);
+  });
+
+  var cBox = document.getElementById("components");
+  Object.keys(D.components).forEach(function (key) {
+    var n = D.controls.filter(function (c) { return c.component === key; }).length;
+    var li = el("li");
+    li.appendChild(el("b", null, D.components[key].name));
+    li.appendChild(document.createTextNode(n + " control" + (n === 1 ? "" : "s")));
+    cBox.appendChild(li);
+  });
+
+  var aBox = document.getElementById("companions");
+  D.companions.slice(0, 3).forEach(function (ai) {
+    var card = el("article", "q");
+    card.appendChild(el("span", "pill", "Specified, not built"));
+    card.appendChild(el("h3", null, ai.name + " · " + ai.deliverable));
+    card.appendChild(el("blockquote", null, ai.question));
+    card.appendChild(el("p", null, "Needs first: " + ai.requires[0]));
+    aBox.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>
